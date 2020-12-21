@@ -3,7 +3,7 @@ tests
 ~~~~~
 
 This module contains global variables and utility functions required for
-testing the ``cc-pydata`` cookiecutter template.
+testing the cookiecutter template.
 
 Unit tests for these functions can be found in ``tests.test_testutils`` module
 
