@@ -81,7 +81,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            '{{ cookiecutter.command_line_interface_bin_name }} = {{ cookiecutter.package_name }}.cli:main',
+            '{{ cookiecutter.command_line_interface_bin_name }} = {{ cookiecutter.script_name }}.cli:main',
         ]
     },
     use_scm_version=True,

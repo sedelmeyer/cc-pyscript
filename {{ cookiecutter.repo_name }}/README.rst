@@ -2,7 +2,7 @@
 {% for _ in cookiecutter.project_name %}{{"="}}{% endfor %}
 
 {{ cookiecutter.project_short_description }}
-{% if cookiecutter.travis == 'yes' %}
+{% if cookiecutter.gh_actions == 'yes' %}
 .. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}.svg?branch=master
     :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}
 {% else -%}
