@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+{% if cookiecutter.tox == "yes" -%}
+tox = "*"
+{% endif -%}
+pytest = "*"
+pytest-cov = "*"
+flake8 = "*"
+sphinx = "*"
+black = "==19.10b0"
+isort = "*"
+
+[packages]
+
+[requires]
+python_version = "3.7"
