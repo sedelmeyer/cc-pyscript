@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import print_function
-
 import io
 import re
 from glob import glob
@@ -81,7 +78,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            '{{ cookiecutter.command_line_interface_bin_name }} = {{ cookiecutter.script_name }}.cli:main',
+            '{{ cookiecutter.command_line_interface_bin_name }} = {{
+            cookiecutter.package_name}}.{{ cookiecutter.script_name }}:main',
         ]
     },
     use_scm_version=True,
