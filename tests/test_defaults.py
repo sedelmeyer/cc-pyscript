@@ -2,7 +2,7 @@
 tests.test_defaults
 ~~~~~~~~~~~~~~~~~~~
 
-This module contains tests for the default ``cc-pydata`` template build
+This module contains tests for the default template build
 """
 import contextlib
 import os
@@ -11,14 +11,13 @@ import shutil
 import subprocess
 import tempfile
 from unittest import TestCase
-
 import tests
 
 #: Define ``project_name`` for default template
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define ``package_name`` for default template
-package_name = json_dict['package_name']
+#: Define ``script_name`` for default template
+package_name = json_dict['script_name']
 
 #: Define ``command_line_interface_bin_name`` for default template
 command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
@@ -28,7 +27,6 @@ template_files = [
     '.editorconfig',
     '.env',
     '.gitignore',
-    '.travis.yml',
     'CHANGELOG.rst',
     'LICENSE',
     'logging.json',
@@ -40,38 +38,19 @@ template_files = [
 
 #: Define list of ``src`` submodule directories expected in default template
 template_submodules = [
-    'data',
-    'features',
-    'logger',
-    'models',
-    'visualizations',
 ]
 
 #: Define list of sub-directories expected in default template
 template_directories = [
-    'data',
-    'data/raw',
-    'data/interim',
-    'data/processed',
     'docs',
     'docs/_static/figures',
     'docs/_templates',
-    'models',
-    'notebooks',
-    'references',
-    'references/third-party',
-    'reports',
-    'reports/figures',
     'src',
     *[
         'src/{}/{}'.format(package_name, submod)
         for submod in template_submodules
     ],
     'tests',
-    *[
-        'tests/{}'.format(submod)
-        for submod in template_submodules
-    ]
 ]
 
 
