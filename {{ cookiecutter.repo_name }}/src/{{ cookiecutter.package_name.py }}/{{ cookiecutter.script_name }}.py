@@ -93,3 +93,14 @@ class ArgparseUserOptions:
         return self.parser.parse_args(args)
 
 
+def main():
+    """Operations executed when calling this script from the command line"""
+    args = ArgparseUserOptions(
+        description=parser_description,
+        args_dict_list=[required_args_dict, optional_args_dict],
+        epilog=__doc__,
+    ).parse_args(sys.argv[1:])
+
+    
+if __name__ == "__main__":
+    main()
