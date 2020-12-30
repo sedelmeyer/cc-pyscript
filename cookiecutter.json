@@ -33,8 +33,7 @@
     "command_line_interface": ["argparse"],
     "command_line_interface_bin_name": "{{ cookiecutter.script_name|replace('_', '-') }}",
     "gh_actions": ["yes", "no"],
-    "azure_pipelines": ["yes", "no"],
-    "tox": ["yes", "no"],
+    "tox": ["yes"],
 
     "_extensions": ["jinja2_time.TimeExtension"]
 }
