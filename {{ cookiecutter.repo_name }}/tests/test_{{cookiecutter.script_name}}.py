@@ -13,7 +13,9 @@ class TestArgparseUserOptions(TestCase):
         self.test_description = "Test description"
         self.test_args = ["arg1", "arg2"]
         self.test_args_dict = {
-            arg: {"flags": [arg], "options": {"type": str}} for arg in self.test_args
+            arg: {
+                "flags": [arg], "options": {"type": str}
+                } for arg in self.test_args
         }
         self.test_inputs = ["test{}".format(i) for i in range(len(self.test_args_dict))]
         self.UserOptions = {{ cookiecutter.script_name }}.ArgparseUserOptions(
