@@ -20,7 +20,6 @@ NOTES:
   cookiecutter.repo_name }})
 """
 import argparse
-import os
 import sys
 
 parser_description = "CLI script description"
@@ -101,6 +100,8 @@ def main():
         epilog=__doc__,
     ).parse_args(sys.argv[1:])
 
-    
+    return args
+
+
 if __name__ == "__main__":
     main()
