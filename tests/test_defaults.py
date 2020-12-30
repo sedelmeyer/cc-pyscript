@@ -17,7 +17,7 @@ import tests
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
 #: Define ``script_name`` for default template
-package_name = json_dict['script_name']
+package_name = json_dict['package_name']
 
 #: Define ``command_line_interface_bin_name`` for default template
 command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
@@ -46,12 +46,11 @@ template_directories = [
     'docs/_static/figures',
     'docs/_templates',
     'src',
-    *[
-        'src/{}/{}'.format(package_name, submod)
-        for submod in template_submodules
-    ],
+    'src/{}'.format(package_name),
     'tests',
 ]
+
+files_with_brackets_list = ["ci-test-matrix.yml"]
 
 
 class TestBuildDefaultTemplate(TestCase):
@@ -85,9 +84,12 @@ class TestBuildDefaultTemplate(TestCase):
         # loop through all template files for all sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             for filename in files:
-                file_content = tests.read_template_file(subdir, filename)
-                # assert no jinja brackets are present in rendered files
-                self.assertIsNone(tests.find_jinja_brackets(file_content))
+                if filename not in files_with_brackets_list:
+                    print(filename)
+                    file_content = tests.read_template_file(subdir, filename)
+                    # assert no jinja brackets are present in rendered files
+                    print(file_content)
+                    self.assertIsNone(tests.find_jinja_brackets(file_content))
 
     def test_files_exist(self):
         """Ensure specified top-level files exist"""
