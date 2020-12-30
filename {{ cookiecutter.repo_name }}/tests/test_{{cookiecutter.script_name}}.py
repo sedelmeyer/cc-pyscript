@@ -76,7 +76,20 @@ class TestMainCLI(TestCase):
 
     def test_cli_argparse_help(self):
         """Ensure main CLI default argparse produces help docs with all relevant args"""
-        result = subprocess.check_output(shlex.split("{{ cookiecutter.command_line_interface_bin_name }} -h"))
+        # delete try-except logic and keep only first subprocess call shown below
+        # this try-except is only required for testing the original cc-pyscript template
+        try:
+            result = subprocess.check_output(
+                shlex.split(
+                    "{{ cookiecutter.command_line_interface_bin_name }} -h"
+                )
+            )
+        except FileNotFoundError:
+            result = subprocess.check_output(
+                shlex.split(
+                    "python {{ cookiecutter.package_name }}/{{ cookiecutter.script_name }}.py -h"
+                )
+            )
         self.assertTrue({{ cookiecutter.script_name }}.parser_description in str(result))
         for args_dict in [
             {{ cookiecutter.script_name }}.required_args_dict,
