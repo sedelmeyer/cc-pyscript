@@ -8,7 +8,7 @@ https://cookiecutter.readthedocs.io/en/1.7.2/advanced/hooks.html
 """
 
 import os
-
+import shutil
 
 if __name__ == '__main__':
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
         os.remove('LICENSE')
 
     if 'no' == '{{ cookiecutter.gh_actions }}':
-        os.rmdir('.github')
+        shutil.rmtree('.github')
 
     if 'no' == '{{ cookiecutter.tox }}':
         os.remove('tox.ini')
