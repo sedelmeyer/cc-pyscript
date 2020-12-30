@@ -161,7 +161,7 @@ Cookiecutter resources
 * The official `Cookiecutter project documentation <https://cookiecutter.readthedocs.io/en/1.7.2/>`_
 
 Tools leveraged by ``cc-pyscript``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Pipenv_ for package and virtual environment management
 * `GitHub Actions`_ for continuous integration
