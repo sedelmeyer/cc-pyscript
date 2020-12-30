@@ -3,8 +3,8 @@
 
 {{ cookiecutter.project_short_description }}
 {% if cookiecutter.gh_actions == 'yes' %}
-.. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}.svg?branch=master
-    :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}
+.. image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/workflows/build/badge.svg?branch=master
+    :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/actions
 {% else -%}
 {%- endif %}
 
