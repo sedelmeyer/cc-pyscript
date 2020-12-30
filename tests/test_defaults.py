@@ -98,6 +98,7 @@ class TestBuildDefaultTemplate(TestCase):
     def test_files_exist(self):
         """Ensure specified top-level files exist"""
         for filename in template_files:
+            print(filename)
             self.assertTrue(
                 os.path.exists(os.path.join(self.builtdir, filename))
             )
