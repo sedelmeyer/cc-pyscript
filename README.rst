@@ -99,7 +99,7 @@ Getting started
 ---------------
 
 Initiate the ``cc-pyscript`` template using Cookiecutter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you have met the basic requirements listed above, generating a new ``cc-pyscript`` project template is as easy as executing this in your command line::
 
@@ -112,7 +112,7 @@ Alternatively, if you have a local working copy of the ``cc-pyscript`` project i
 **For a complete overview on how to generate and configure your** ``cc-pyscript`` **data science project,** please see `this project's full tutorial`_.
 
 ``cc-pyscript`` directory structure
----------------------------------
+-----------------------------------
 
 Below is a high level overview of the resulting directory structure when you generate a ``cc-pyscript`` project template.
 
