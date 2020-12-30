@@ -3,9 +3,6 @@ Cookiecutter PyScript
 
 Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generating fully tested Python scripting projects.
 
-.. image:: https://travis-ci.com/sedelmeyer/cc-pyscript.svg?branch=master
-    :target: https://travis-ci.com/sedelmeyer/cc-pyscript
-
 .. image:: https://github.com/sedelmeyer/cc-pyscript/workflows/build/badge.svg?branch=master
     :target: https://github.com/sedelmeyer/cc-pyscript/actions
 
