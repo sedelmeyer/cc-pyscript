@@ -99,9 +99,9 @@ class TestBuildTemplateOption(TestCase):
         content = tests.read_template_file(builtdir, filename)
         self.assertTrue("cookiecutter" not in content)
 
-    def test_travis_yes_badge(self):
+    def test_gh_actions_yes_badge(self):
         """Ensure travis 'yes' option includes badge in docs"""
-        extra_context = {'travis': 'yes'}
+        extra_context = {'gh_actions': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
@@ -109,11 +109,10 @@ class TestBuildTemplateOption(TestCase):
         readme_content = tests.read_template_file(builtdir, 'README.rst')
         print(readme_content)
         self.assertTrue(
-            '\n.. image:: https://travis-ci.com/' in readme_content
+            '\n.. image:: https://github.com/' in readme_content
         )
         self.assertIsNone(tests.find_jinja_brackets(readme_content))
         conf_content = tests.read_template_file(builtdir, 'docs/conf.py')
-        self.assertTrue("'travis_button': 'true'," in conf_content)
         self.assertIsNone(tests.find_jinja_brackets(conf_content))
 
     def test_gh_actions_no_yaml(self):
@@ -129,20 +128,19 @@ class TestBuildTemplateOption(TestCase):
             os.path.isdir(ci_path)
         )
 
-    def test_travis_no_badge(self):
+    def test_gh_actions_no_badge(self):
         """Ensure travis 'no' option does not include badge in docs"""
-        extra_context = {'travis': 'no'}
+        extra_context = {'gh_actions': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
         readme_content = tests.read_template_file(builtdir, 'README.rst')
         self.assertTrue(
-            '.. image:: https://travis-ci.com/' not in readme_content
+            '.. image:: https://github.com/' not in readme_content
         )
         self.assertIsNone(tests.find_jinja_brackets(readme_content))
         conf_content = tests.read_template_file(builtdir, 'docs/conf.py')
-        self.assertTrue("'travis_button': 'false'," in conf_content)
         self.assertIsNone(tests.find_jinja_brackets(conf_content))
 
     def test_tox_yes_ini(self):
@@ -169,47 +167,47 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue('tox' in content)
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_yes_travis_yes_yaml(self):
-        """Ensure tox and travis 'yes' option builds correct ``.travis.yml``"""
-        extra_context = {'tox': 'yes', 'travis': 'yes'}
-        builtdir = tests.bake_cookiecutter_template(
-            output_dir=self.tmpdir,
-            extra_context=extra_context
-        )
-        content = tests.read_template_file(builtdir, '.travis.yml')
-        self.assertTrue('TOXENV' in content)
-        self.assertIsNone(tests.find_jinja_brackets(content))
+    # def test_tox_yes_travis_yes_yaml(self):
+    #     """Ensure tox and travis yes option builds correct ``.travis.yml``"""
+    #     extra_context = {'tox': 'yes', 'travis': 'yes'}
+    #     builtdir = tests.bake_cookiecutter_template(
+    #         output_dir=self.tmpdir,
+    #         extra_context=extra_context
+    #     )
+    #     content = tests.read_template_file(builtdir, '.travis.yml')
+    #     self.assertTrue('TOXENV' in content)
+    #     self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_no_ini(self):
-        """Ensure tox 'no' option removes ``tox.ini``"""
-        extra_context = {'tox': 'no'}
-        builtdir = tests.bake_cookiecutter_template(
-            output_dir=self.tmpdir,
-            extra_context=extra_context
-        )
-        tox_path = os.path.join(builtdir, 'tox.ini')
-        self.assertFalse(
-            os.path.exists(tox_path)
-        )
+    # def test_tox_no_ini(self):
+    #     """Ensure tox 'no' option removes ``tox.ini``"""
+    #     extra_context = {'tox': 'no'}
+    #     builtdir = tests.bake_cookiecutter_template(
+    #         output_dir=self.tmpdir,
+    #         extra_context=extra_context
+    #     )
+    #     tox_path = os.path.join(builtdir, 'tox.ini')
+    #     self.assertFalse(
+    #         os.path.exists(tox_path)
+    #     )
 
-    def test_tox_no_pipfile(self):
-        """Ensure tox 'no' option removes ``tox`` install from ``Pipfile``"""
-        extra_context = {'tox': 'no'}
-        builtdir = tests.bake_cookiecutter_template(
-            output_dir=self.tmpdir,
-            extra_context=extra_context
-        )
-        content = tests.read_template_file(builtdir, 'Pipfile')
-        self.assertTrue('tox' not in content)
-        self.assertIsNone(tests.find_jinja_brackets(content))
+    # def test_tox_no_pipfile(self):
+    #     """Ensure tox 'no' option removes ``tox`` install from ``Pipfile``"""
+    #     extra_context = {'tox': 'no'}
+    #     builtdir = tests.bake_cookiecutter_template(
+    #         output_dir=self.tmpdir,
+    #         extra_context=extra_context
+    #     )
+    #     content = tests.read_template_file(builtdir, 'Pipfile')
+    #     self.assertTrue('tox' not in content)
+    #     self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_no_travis_yes_yaml(self):
-        """Ensure tox 'no' option builds with correct ``.travis.yml``"""
-        extra_context = {'tox': 'no', 'travis': 'yes'}
-        builtdir = tests.bake_cookiecutter_template(
-            output_dir=self.tmpdir,
-            extra_context=extra_context
-        )
-        content = tests.read_template_file(builtdir, '.travis.yml')
-        self.assertTrue('TOXENV' not in content)
-        self.assertIsNone(tests.find_jinja_brackets(content))
+    # def test_tox_no_travis_yes_yaml(self):
+    #     """Ensure tox 'no' option builds with correct ``.travis.yml``"""
+    #     extra_context = {'tox': 'no', 'travis': 'yes'}
+    #     builtdir = tests.bake_cookiecutter_template(
+    #         output_dir=self.tmpdir,
+    #         extra_context=extra_context
+    #     )
+    #     content = tests.read_template_file(builtdir, '.travis.yml')
+    #     self.assertTrue('TOXENV' not in content)
+    #     self.assertIsNone(tests.find_jinja_brackets(content))
