@@ -3,12 +3,13 @@ Changelog
 
 .. _future-releases:
 
-Future releases
----------------
+v0.2.0 (Future Release)
+-----------------------
 
-.. todo::
+* Add Azure Pipelines continuous integration option
 
-v0.1.0 (2020-12-XX)
+v0.1.0 (2020-12-31)
 -------------------
 
-* Initial template with placeholder directories
+* Initial ``cc-pyscript`` template with GitHub Actions CI and Tox testing
+* Initial user documentation and tutorial
