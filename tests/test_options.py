@@ -86,18 +86,18 @@ class TestBuildTemplateOption(TestCase):
         # confirm that file does not contain unrendered jinja
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_travis_yes_yaml(self):
-        """Ensure travis 'yes' option builds with ``travis.yml`` file"""
-        extra_context = {'travis': 'yes'}
+    def test_gh_actions_yes_yaml(self):
+        """Ensure gh-actions 'yes' option builds with workflows CI file"""
+        extra_context = {'gh_actions': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        self.assertTrue(
-            os.path.exists(os.path.join(builtdir, '.travis.yml'))
-        )
-        content = tests.read_template_file(builtdir, '.travis.yml')
-        self.assertIsNone(tests.find_jinja_brackets(content))
+        filename = '.github/workflows/ci-test-matrix.yml'
+        ci_path = os.path.join(builtdir, filename)
+        self.assertTrue(os.path.exists(ci_path))
+        content = tests.read_template_file(builtdir, filename)
+        self.assertTrue("cookiecutter" not in content)
 
     def test_travis_yes_badge(self):
         """Ensure travis 'yes' option includes badge in docs"""
@@ -116,16 +116,17 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue("'travis_button': 'true'," in conf_content)
         self.assertIsNone(tests.find_jinja_brackets(conf_content))
 
-    def test_travis_no_yaml(self):
-        """Ensure travis 'no' option removes ``.travis.yml``"""
-        extra_context = {'travis': 'no'}
+    def test_gh_actions_no_yaml(self):
+        """Ensure gh-actions 'no' option removes workflows CI directory"""
+        extra_context = {'gh_actions': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        travis_path = os.path.join(builtdir, '.travis.yml')
+        gh_dir = ".github/workflows"
+        ci_path = os.path.join(builtdir, gh_dir)
         self.assertFalse(
-            os.path.exists(travis_path)
+            os.path.isdir(ci_path)
         )
 
     def test_travis_no_badge(self):
