@@ -16,8 +16,11 @@ import tests
 #: Define ``project_name`` for default template
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define ``script_name`` for default template
+#: Define ``package_name`` for default template
 package_name = json_dict['package_name']
+
+#: Define ``script_name`` for deafualt template
+script_name = json_dict['script_name']
 
 #: Define ``command_line_interface_bin_name`` for default template
 command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
@@ -50,6 +53,7 @@ template_directories = [
     'tests',
 ]
 
+#: Define list of template files containing double curly brackets
 files_with_brackets_list = ["ci-test-matrix.yml"]
 
 
@@ -87,7 +91,7 @@ class TestBuildDefaultTemplate(TestCase):
                 if filename not in files_with_brackets_list:
                     file_content = tests.read_template_file(subdir, filename)
                     # assert no jinja brackets are present in rendered files
-                    # add print statement to see name of file if failure
+                    # add print statement to identify file if failure
                     print(filename)
                     self.assertIsNone(tests.find_jinja_brackets(file_content))
 
@@ -156,8 +160,8 @@ class TestBuildDefaultTemplate(TestCase):
             cli_arg = 'arg'
             result = subprocess.check_output(
                 shlex.split(
-                    'python -m {} {} {}'.format(
-                        package_name, cli_entry_point, cli_arg
+                    'python -m {}.{} {} -h'.format(
+                        package_name, script_name, cli_entry_point
                     )
                 )
             )
