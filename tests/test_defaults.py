@@ -28,7 +28,7 @@ command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
 #: Define list of top-level files expected in default template
 template_files = [
     '.editorconfig',
-    '.env',
+    # '.env',
     '.gitignore',
     'CHANGELOG.rst',
     'LICENSE',
