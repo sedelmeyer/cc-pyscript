@@ -118,41 +118,43 @@ Below is a high level overview of the resulting directory structure when you gen
 
 .. code::
 
-    cc-pyscript Project Directory
-    │
-    ├─ src/               <- Python source code for your project
-    │ └─ {{package_name}}/       <- Default module containing your
-    │   │                           script (i.e. all scripts go here)
-    │   ├─ __init__.py           <- Makes this directory a Python module
-    │   └─ {{script_name}}.py    <- The initial script saved to this
-    │                               project
-    │
-    ├─ tests/             <- Unit tests for Python your script(s)
-    │ └─ test_{{script_name}}.py <- Default tests for initial script
-    │
-    ├─ .github/           <- GitHub actions CI workflows (optional)
-    │ └─ workflows               <- Workflows directory
-    │   └─ ci-test-matrix.yml    <- Default CI tests (runs tox matrix)
-    │
-    ├─ docs/              <- A default Sphinx project for generating
-    │                        documentation (if required)
-    ├─ .env               <- Sets project-specific environment
-    │                        variables such as credentials that you
-    │                        do not want committed to Git history
-    ├─ .gitignore         <- Specified files to ignore from Git
-    ├─ CHANGLOG.rst       <- Documents version-by-version changes
-    ├─ LICENSE            <- Project license (included if open source)
-    ├─ logging.json       <- Default logging configuration dictionary
-    ├─ Pipfile            <- Requirements file for reproducing your
-    │                        project environment using the Pipenv
-    │                        package manager
-    │                        (see pipenv.readthedocs.io)
-    ├─ README.rst         <- The top-level README for developers
-    ├─ setup.py           <- Setup script for the project using
-    │                        setuptools
-    ├─ setup.cfg          <- Contains default options for development
-    │                        tools (i.e. flake8, isort, pytest, etc.)
-    └─ tox.ini            <- Default tox-automated test configuration
+    {{ repo_name }}
+
+      │
+      ├─ src/               <- Python source code for your project
+      │ └─ {{ package_name }}/       <- Default module containing your
+      │   │                             script (i.e. all scripts go here)
+      │   ├─ __init__.py             <- Makes this directory a module
+      │   └─ {{ script_name }}.py    <- The initial script saved to
+      │                                 this project
+      │
+      ├─ tests/             <- Unit tests for Python your script(s)
+      │ └─ test_{{ script_name }}.py <- Default tests for script
+      │
+      ├─ .github/           <- GitHub actions CI workflows (optional)
+      │ └─ workflows                 <- Workflows directory
+      │   └─ ci-test-matrix.yml      <- CI tests (runs tox matrix)
+      │
+      ├─ docs/              <- A default Sphinx project for generating
+      │ └─ ...                 documentation (if required)
+      │
+      ├─ .env               <- Sets project-specific environment
+      │                        variables such as credentials that you
+      │                        do not want committed to Git history
+      ├─ .gitignore         <- Specified files to ignore from Git
+      ├─ CHANGLOG.rst       <- Documents version-by-version changes
+      ├─ LICENSE            <- Project license (included if open source)
+      ├─ logging.json       <- Default logging configuration dictionary
+      ├─ Pipfile            <- Requirements file for reproducing your
+      │                        project environment using the Pipenv
+      │                        package manager
+      │                        (see pipenv.readthedocs.io)
+      ├─ README.rst         <- The top-level README for developers
+      ├─ setup.py           <- Setup script for the project using
+      │                        setuptools
+      ├─ setup.cfg          <- Contains default options for development
+      │                        tools (i.e. flake8, isort, pytest, etc.)
+      └─ tox.ini            <- Default tox-automated test configuration
 
 .. _other resources:
 
