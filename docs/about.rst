@@ -156,17 +156,17 @@ You should see output similar to this:
 
 .. code-block:: Bash
 
-    ============================ test session starts =============================
-    platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.2, pluggy-0.13.1
-    rootdir: /home/Code/cookiecutter-pydata, inifile: setup.cfg, testpaths: tests
-    plugins: cov-2.10.0
+    ====================== test session starts ========================
+    platform linux Python 3.7.9, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
+    rootdir: /home/cc-pyscript, configfile: setup.cfg, testpaths: tests
+    plugins: cov-2.10.1
     collected 28 items
 
-    tests/test_defaults.py ..........                                       [ 35%]
-    tests/test_options.py .........                                         [ 67%]
-    tests/test_testutils.py .........                                       [100%]
+    tests/test_defaults.py ..........                            [ 35%]
+    tests/test_options.py .........                              [ 67%]
+    tests/test_testutils.py .........                            [100%]
 
-    ============================= 28 passed in 5.55s =============================
+    ====================== 28 passed in 6.26s =========================
 
 
 Testing rendered Cookiecutter templates
@@ -235,7 +235,6 @@ API documentation for the ``tests`` module
    :members:
 
 
-.. _`Travis-CI`: https://travis-ci.com/
 .. _`GitHub Actions`: https://github.com/features/actions
 .. _tox: https://tox.readthedocs.io/en/latest/
 .. _`pep 8`: https://www.python.org/dev/peps/pep-0008/
