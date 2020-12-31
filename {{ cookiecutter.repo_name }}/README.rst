@@ -21,6 +21,25 @@ Summary
     * Add a brief summary of this project.
 
 
+The ``{{ cookiecutter.script_name }}.py`` script itself can be found in the ``src/{{ cookiecutter.package_name }}/`` sub-directory.
+
+Please note that this script can also be run from this project's ``{{ cookiecutter.package_name }}`` package
+
+Command Line Usage
+------------------
+
+To invoke this Python script, simply run ``python {{ cookiecutter.script_name }}.py``.
+
+Additionally, this script can also be run from the CLI entry-point ``{{ cookiecutter.command_line_interface_bin_name }}`` if the overarching ``{{ cookiecutter.package_name }}`` python application (i.e. package) is installed locally.
+
+Running the script's ``--help`` command with ``python {{ cookiecutter.script_name }}.py -h`` will provide the following usage intructions::
+
+  ADD STDOUT USAGE INSTRUCTIONS AS THEY APPEAR IN THE TERMINAL
+
+.. todo::
+
+   * Add stdout usage instructions to the code block above.
+
 0. Ensure system requirements are met
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
