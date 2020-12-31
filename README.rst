@@ -9,6 +9,8 @@ Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generati
 .. image:: https://img.shields.io/badge/License-MIT-black.svg
     :target: https://github.com/sedelmeyer/cc-pyscript/blob/master/LICENSE
 
+|
+
 * **GitHub repo:** https://github.com/sedelmeyer/cc-pyscript
 
 .. contents:: Contents
@@ -189,12 +191,10 @@ Additionally, if you would like to auto-populate the values for any of these pro
 """"""""""""""""""""""""""""""""""
 
 1. ``full_name``
-
   * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
   * Can be set in your ``~/.cookiecutterrc`` config file
 
 2. ``email``
-
   * Contact email of the author (used in ``setup.py``)
   * Can be set in your ``~/.cookiecutterrc`` config file
 
