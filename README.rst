@@ -84,13 +84,13 @@ Below is a high level overview of the resulting directory structure when you gen
 Design decisions
 ----------------
 
-Of primary importance to me while designing the ``cc-pyscript`` template, was the ability to write **fully-tested Python scripts** while retaining the ability to BOTH:
+Of primary importance to me while designing the ``cc-pyscript`` template was the ability to write **fully-tested Python scripts** while retaining the ability to BOTH:
 
-1. Run those scripts as individual ``.py`` files, independent of the overarching project repository,
+1. Run those scripts as individual ``.py`` files, independent of the overarching project repository;
 
 2. Run those scripts as a suite of command-line applications, directly from CLI entry-points if so desired.
 
-Also of importance, was to have the code packaged within standardized Python application, easily extensible should the project grow in size and complexity.
+Also, of importance was to have the code packaged within standardized Python application, easily extensible should the project grow in size and complexity.
 
 While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version of this project.
 
@@ -336,7 +336,7 @@ For a more complete overview of how to use ``pipenv`` for package and dependenci
 
 **Congratulations!** You've stood up a new ``cc-pyscript`` project template!
 
-**Now it's time to explore some of the features of this template!**
+**Now it's time to explore some of the important features of this template!**
 
 
 .. _other resources:
