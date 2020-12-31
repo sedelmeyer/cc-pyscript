@@ -2,7 +2,7 @@
 tests.test_options
 ~~~~~~~~~~~~~~~~~~
 
-This module contains tests for optional ``cc-pydata`` template build options
+This module contains tests for optional ``cc-pyscript`` template build options
 """
 import contextlib
 import os
