@@ -5,7 +5,6 @@
 {% if cookiecutter.gh_actions == 'yes' %}
 .. image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/workflows/build/badge.svg?branch=master
     :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/actions
-{% else -%}
 {%- endif %}
 
 .. contents:: Contents
@@ -69,22 +68,44 @@ If you'd like clone and build off of this project, below are some important note
 Project repository directory structure, design, and usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Python package configuration and associated workflows
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The repository structure, packaging, and workflows for this project are largely based on the conventions used in the ``cc-pyscript`` Cookiecutter template `available here <https://github.com/sedelmeyer/cc-pyscript>`_.
+
+Python package configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This package is configured via the ``setup.py`` and ``setup.cfg`` files found in this repository. The source code for this package is located in the ``src/{{ cookiecutter.package_name }}/`` directory. For general information on the benefits to this approach for packaging a Python library, please `see this article <https://blog.ionelmc.ro/2014/05/25/python-packaging/>`_.
 
 Testing
 ^^^^^^^
 
-Version control and git workflow
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This project is configured for automated testing using ``tox``{% if cookiecutter.gh_actions == 'yes' %} and continuous integration services via GitHub Actions{% endif %}. Additionally, the ``pytest`` test-runner is used for running the associated test suite located in the ``tests/`` directory.
+
+* If you are new to ``tox``, please see `the official Tox documentation <https://tox.readthedocs.io/en/latest/>`_.
+{% if cookiecutter.gh_actions == 'yes' %}
+* If you are new to GitHub Actions, additional information `can be found here <https://github.com/features/actions>`_.
+{%- endif %}
+* If you are new to ``pytest``, please see `the official pytest documentation <https://docs.pytest.org/en/stable/index.html>`_. 
+
+Project versioning
+^^^^^^^^^^^^^^^^^^
+
+This project is configured to use ``setuptools_scm`` to manage and track the project's current release version. By using ``setuptools_scm``, this project's ``setup.py`` pulls the version number directly from the latest ``git`` tag associated with the project. Therefore, instead of manually setting a global ``__version__`` variable in the application, you simply add a tag when commiting a new version of this project to the ``master`` branch.
+
+* If you are new to ``setuptools_scm``, please see `the official documentation <https://pypi.org/project/setuptools-scm/>`_.
 
 Documentation using Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+   * If this project is complex enough to require the use of full-fledged Sphinx documentation, add details here.
 
 .. _issues:
 
 Questions or issues related to this project
 -------------------------------------------
+
+Questions or issues related to this project can be submitted as an "issue" via the GitHub repository at: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/issues
 
 .. todo::
 
