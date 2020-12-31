@@ -517,79 +517,36 @@ The ``cc-pyscript`` project template offers the option to configure the rendered
 
 If you select ``"no"`` for the ``gh_actions`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be neither a ``.github/workflows/`` directory added to the finished template, nor will there be a GitHub Actions build-badge included in the rendered template's default documentation.
 
-The default ``ci-test-metrix.yml`` configuration file
+The default ``ci-test-matrix.yml`` configuration file
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The configuration of the default ``.travis.yml`` file changes depending on whether the ``tox`` option is selected or deselected during the template rendering process.
+The configuration of the default ``ci-test-matrix.yml`` file will trigger a GitHub Actions build every time you push to either the ``develop`` or ``master`` remote branch on GitHub. That build will run all of the default ``tox`` environment tests specified in the template's ``tox.ini`` file.
 
-If ``"yes"`` is selected for both the ``travis`` and ``tox`` options, then the rendered ``.travis.yml`` configuration file will trigger a Travis-CI build which runs all of the default ``tox`` environments specified in the template's ``tox.ini``.
+The build badge provided at the top of the template's ``README.rst`` file reflects the latest build results for the project's ``master`` branch.
 
-If ``"no"`` is selected for the ``tox`` option, but ``"yes"`` is selected for ``travis``, then the resulting ``.travis.yml`` configuration file will run a Travis-CI build that installs the template's ``pipenv`` requirements and runs:
+To modify the branches on which your GitHub Actions are built, or to change the specific Python versions or operating systems used in your test matrix, you will want to change the initial parameters set in the ``ci-test-matrix.yml``::
 
-1. A ``tests`` stage that calls the ``pytest`` test-runner to ensure all tests pass, as well as...
-2. An ``answers`` stage that ensures the template package's ``main`` entry-point exits with a status of ``0`` when run.
+   ...
 
-To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing what is contained in the ``cc-pyscript`` default ``.travis.yml`` file when ``tox`` is not enabled for the template (with comments added to describe what each item means).
+   on:
+     push:
+       branches:
+           - master
+           - develop
+     pull_request:
+       branches: [ master ]
+   
+   jobs:
+     build:
+   
+       strategy:
+         matrix:
+           python-version: [3.6, 3.7, 3.8]
+           os: ["ubuntu-latest"]
 
-.. code-block:: yaml
+   ...
 
-    # This first section tells travis-ci.com what coding language and
-    # which distribution and versions to use for your build.
-    language: python
-    dist: xenial
-    python:
-    - 3.7
-
-    # This section tells travis-ci what commands to run. Note that the
-    # first thing it will do is install the required pipenv
-    # environment.
-    install:
-    - pip install pipenv
-    - pipenv install --system --deploy --ignore-pipfile
-
-    # This tells travis-ci to only run builds when you push your master
-    # or develop branches. Therefore, travis builds will ot run for any
-    # other branches.
-    branches:
-    only:
-    - master
-    - develop
-
-    # This defines the build "stages" you wish to run. Note here, that
-    # the "answers" stage will only be executed when your master branch
-    # is pushed. The "test" stage on the otherhand, it will run for
-    # both the master and develop branches as specified in the previous
-    # section.
-    stages:
-    - test
-    - name: answers
-        if: branch = master
-
-    # This section specifies what travis-ci should do for each stage
-    # you have defined above. For the "test" stage, your pipenv
-    # environment will be installed and your tests will execute using
-    # the pytest test runner set to verbose mode. For the "answers"
-    # stage, the code in your cc-pyscript package's main module will be
-    # run.
-    jobs:
-    include:
-        - stage: test
-        script: pytest -v
-        install:
-            - pip install pipenv
-            - pipenv install --system --deploy --dev --ignore-pipfile
-
-        - stage: answers
-        script:
-        - python3 -m {{ cookiecutter.package_name }}
-
-
-Setting up travis-ci.com to run CI builds for your project
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-In order for Travis-CI to run builds for your project when you push to your GitHub-hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account and for your specific ``cc-pyscript`` rendered template repository on GitHub.
-
-For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
+However, please note that other changes may need to be made to your template in order for tests to pass on other operating systems.
 
 
 Logging configuration and out-of-the-box ``cc-pyscript`` logging features
