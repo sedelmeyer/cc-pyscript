@@ -13,6 +13,7 @@ Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generati
 
 .. contents:: Contents
   :local:
+  :depth: 1
   :backlinks: top
 
 Summary
@@ -219,31 +220,36 @@ Additionally, if you would like to auto-populate the values for any of these pro
 
   * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
 
-8. ``distribution_name``
+
+8. ``script_name``
+
+   * Python script ``.py`` filename for the initial script saved to your project (can be executed as a standalone script by running a command such as ``python src/package_name/script_name.py -h`` )
+
+9. ``distribution_name``
 
   * PyPI distribution name (what you would ``pip install``)
 
-9. ``project_short_description``
+10. ``project_short_description``
 
   * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
 
-10. ``release_date``
+11. ``release_date``
 
   * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
 
-11. ``year_from``
+12. ``year_from``
 
   * Initial copyright year (used in Sphinx ``docs/conf.py``)
 
-12. ``version``
+13. ``version``
 
   * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
 
-13. ``scm_versioning``
+14. ``scm_versioning``
 
   * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
-14. ``license``
+15. ``license``
 
   * License to use in the rendered template
   * Available options:
@@ -257,38 +263,34 @@ Additionally, if you would like to auto-populate the values for any of these pro
 
   * If need help deciding which license to pick, see this: https://choosealicense.com/
 
-15. ``test_runner``
+16. ``test_runner``
 
   * Available options: ``pytest`` only
 
-16. ``linter``
+17. ``linter``
 
   * Available options: ``flake8`` only
 
-17. ``command_line_interface``
+18. ``command_line_interface``
 
   * Enables a CLI bin/executable file.
   * Available options: ``argparse`` only
 
-18. ``command_line_interface_bin_name``
+19. ``command_line_interface_bin_name``
 
-  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal)
+  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal when you have the overarching Python module installed in your active environment)
 
-19. ``travis``
+20. ``gh_actions``
 
-  * Adds a default Travis-CI_ badge and ``.travis.yml`` configuration file to the rendered template, defaults to ``yes``
+  * Adds a default `GitHub Actions`_ badge and ``.github/workflows/ci-test-matrix.yml`` configuration file to the rendered template, defaults to ``yes``
   * Available options:
 
     * yes
     * no
 
-20. ``tox``
+21. ``tox``
 
-  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes``
-  * Available options:
-
-    * yes
-    * no
+  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
 
 3. Initiate git version control
