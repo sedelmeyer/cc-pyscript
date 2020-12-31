@@ -94,32 +94,6 @@ Then, to access that secret key directly within your code, you simply need to ac
 To learn more about this ``pipenv`` behavior, please see the documentation on `Pipenv loading of .env`_.
 
 
-Accessing modules in your package from a Jupyter Notebook
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you would like to incorporate Jupyter notebooks into your ``cc-pyscript`` project, you will first need to install the ``jupyter`` package in your ``pipenv`` environment::
-
-    pipenv install --dev jupyter
-
-Then, once ``jupyter`` is installed, you can start your notebook server by running::
-
-    pipenv shell
-    jupyter notebook
-
-It is recommended that you create and store all Jupyter notebooks in the provided ``notebooks`` directory for consistency.
-
-The ``cc-pyscript`` package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import::
-
-    # example of importing the local `visualizations` module
-    from <package-name> import visualizations
-
-    # or, importing only one function from that module
-    from <package-name>.visualizations import <function-name>
-
-
-Therefore, there is no need to import `src`. Instead, you can use the more natural convention of importing your package based on its actual name.
-
-
 Versioning your project with ``git`` tags and ``setuptools_scm``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -130,6 +104,7 @@ There are a number of different ways to maintain a Python project's current vers
 By using ``setuptools_scm``, your ``cc-pyscript`` application pulls the version number directly from the latest ``git`` tag associated with your project.
 
 Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
+
 
 Implications for choosing an effective ``git`` branching methodology
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -437,8 +412,8 @@ Once you have pushed the first version of your ``gh-pages`` branch to GitHub, Gi
 
 There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.
 
-Test configuration and continuous integration with Travis-CI
-------------------------------------------------------------
+Test configuration and continuous integration with GitHub Actions
+-----------------------------------------------------------------
 
 .. contents:: In this section
   :local:
@@ -488,37 +463,26 @@ The ``pytest`` test-runner is a powerful command-line tool. There are far too ma
 
 Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pyscript`` test output will look something like this if there are no test failures:
 
-.. code-block:: bash
+.. code::
+   
+  ====================== test session starts =========================
+  platform linux  Python 3.7.9, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
+  cachedir: .tox/py37/.pytest_cache
+  rootdir: /home/repo_name, configfile: setup.cfg, testpaths: tests
+  plugins: cov-2.10.1
+  collected 7 items
+  
+  tests/test_nameless_cc_pyscript.py .......                    [100%]
+  
+  ---------- coverage: platform linux, python 3.7.9-final-0 ----------
+  Name                                 Stmts  Miss Branch BrPart Cover
+  --------------------------------------------------------------------
+  src/package_name/__init__.py           6      2      0      0    67%
+  src/package_name/script_name.py       29      2      8      1    92%
+  --------------------------------------------------------------------
+  TOTAL                                 35      4      8      1    88%
 
-    ============================== test session starts ===============================
-    platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
-    rootdir: /home/Code/project_name, inifile: setup.cfg, testpaths: tests, project_name
-    plugins: cov-2.10.0
-    collected 11 items
-
-    tests/test_project_name.py ...                                             [ 27%]
-    tests/data/test_data.py .                                                  [ 36%]
-    tests/features/test_features.py .                                          [ 45%]
-    tests/logger/test_logger.py ....                                           [ 81%]
-    tests/models/test_models.py .                                              [ 90%]
-    tests/visualizations/test_visualizations.py .                              [100%]
-
-    ----------- coverage: platform linux, python 3.7.5-final-0 -----------
-    Name                                          Stmts   Miss Branch BrPart  Cover
-    -------------------------------------------------------------------------------
-    src/project_name/__init__.py                      7      2      0      0    71%
-    src/project_name/__main__.py                      3      1      2      1    60%
-    src/project_name/cli.py                           6      0      0      0   100%
-    src/project_name/data/__init__.py                 2      0      0      0   100%
-    src/project_name/features/__init__.py             2      0      0      0   100%
-    src/project_name/logger/__init__.py              41      2     14      5    87%
-    src/project_name/models/__init__.py               2      0      0      0   100%
-    src/project_name/visualizations/__init__.py       2      0      0      0   100%
-    -------------------------------------------------------------------------------
-    TOTAL                                            65      5     16      6    86%
-
-
-    =============================== 11 passed in 0.16s ===============================
+  ====================== 7 passed in 0.38s ===========================
 
 
 Test matrix automation using ``tox``
@@ -542,18 +506,19 @@ Alternatively, you can run individual ``tox`` environments (instead of all at on
 
 If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be no ``tox.ini`` file contained in the final rendered template and ``tox`` will not be included in the ``Pipfile`` ``dev-packages`` requirements.
 
-Configuring and leveraging Travis-CI for your project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pyscript`` project template offers the option to configure the rendered template to use `Travis-CI`_ services for continuous integration testing.
+Configuring GitHub Actions for your project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* The ``.travis.yml`` file provided in the ``cc-pyscript`` project template is used to configure your `Travis-CI`_ build.
-* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration (CI), please `see their article on core CI concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+The ``cc-pyscript`` project template offers the option to configure the rendered template to use `GitHub Actions`_ services for continuous integration testing.
 
-If you select ``"no"`` for the ``travis`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be neither a ``.travis.yml`` file added to the finished template, nor will there be a Travis build-badge included in the rendered template's default documentation.
+* The ``.github/workflows/ci-test-matrix.yml`` file provided in the ``cc-pyscript`` project template is used to configure your `GitHub Actions`_ build.
+* For a tutorial on how to use GitHub Actions, please `see the official GitHub Actions tutorial <https://docs.github.com/en/free-pro-team@latest/actions>`_.
 
-The default ``.travis.yml`` configuration file
-""""""""""""""""""""""""""""""""""""""""""""""
+If you select ``"no"`` for the ``gh_actions`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be neither a ``.github/workflows/`` directory added to the finished template, nor will there be a GitHub Actions build-badge included in the rendered template's default documentation.
+
+The default ``ci-test-metrix.yml`` configuration file
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 The configuration of the default ``.travis.yml`` file changes depending on whether the ``tox`` option is selected or deselected during the template rendering process.
 
@@ -825,7 +790,7 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/
 .. _Packaging pitfalls: https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/
 .. _Cookiecutter Data Science: https://drivendata.github.io/cookiecutter-data-science/
-.. _Travis-CI: http://travis-ci.com/
+.. _`GitHub Actions`: https://github.com/features/actions
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _Sphinx: http://sphinx-doc.org/
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
