@@ -191,35 +191,36 @@ Additionally, if you would like to auto-populate the values for any of these pro
 """"""""""""""""""""""""""""""""""
 
 1. ``full_name``
-  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
+
+   * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
+   * Can be set in your ``~/.cookiecutterrc`` config file
 
 2. ``email``
-  * Contact email of the author (used in ``setup.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
+  
+   * Contact email of the author (used in ``setup.py``)
+   * Can be set in your ``~/.cookiecutterrc`` config file
 
 3. ``website``
 
-  * Website of the author (not yet used in resulting template).
-  * Can be set in your ``~/.cookiecutterrc`` config file
+   * Website of the author (not yet used in resulting template).
+   * Can be set in your ``~/.cookiecutterrc`` config file
 
 4. ``github_username``
 
-  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
+   * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``)
+   * Can be set in your ``~/.cookiecutterrc`` config file
 
 5. ``project_name``
 
-  * Verbose project name (used in headings in ``README.rst``, ``docs/index.rst``, etc.)
+   * Verbose project name (used in headings in ``README.rst``, ``docs/index.rst``, etc.)
 
 6. ``repo_name``
 
-  * Repository root-directory name and repo name on GitHub (used in ``setup.py``, ``docs/conf.py``, and for GitHub links)
+   * Repository root-directory name and repo name on GitHub (used in ``setup.py``, ``docs/conf.py``, and for GitHub links)
 
 7. ``package_name``
 
-  * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
-
+   * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
 
 8. ``script_name``
 
@@ -227,70 +228,70 @@ Additionally, if you would like to auto-populate the values for any of these pro
 
 9. ``distribution_name``
 
-  * PyPI distribution name (what you would ``pip install``)
+   * PyPI distribution name (what you would ``pip install``)
 
 10. ``project_short_description``
 
-  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
+   * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
 
 11. ``release_date``
 
-  * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
+   * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
 
 12. ``year_from``
 
-  * Initial copyright year (used in Sphinx ``docs/conf.py``)
+   * Initial copyright year (used in Sphinx ``docs/conf.py``)
 
 13. ``version``
 
-  * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
+   * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
 
 14. ``scm_versioning``
 
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
+   * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
 15. ``license``
 
-  * License to use in the rendered template
-  * Available options:
+   * License to use in the rendered template
+   * Available options:
 
-    * MIT license
-    * BSD 2-Clause license
-    * BSD 3-Clause license
-    * ISC license
-    * Apache Software License 2.0
-    * Not open source
+      * MIT license
+      * BSD 2-Clause license
+      * BSD 3-Clause license
+      * ISC license
+      * Apache Software License 2.0
+      * Not open source
 
-  * If need help deciding which license to pick, see this: https://choosealicense.com/
+   * If need help deciding which license to pick, see this: https://choosealicense.com/
 
 16. ``test_runner``
 
-  * Available options: ``pytest`` only
+   * Available options: ``pytest`` only
 
 17. ``linter``
 
-  * Available options: ``flake8`` only
+   * Available options: ``flake8`` only
 
 18. ``command_line_interface``
 
-  * Enables a CLI bin/executable file.
-  * Available options: ``argparse`` only
+   * Enables a CLI bin/executable file.
+   * Available options: ``argparse`` only
 
 19. ``command_line_interface_bin_name``
 
-  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal when you have the overarching Python module installed in your active environment)
+   * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal when you have the overarching Python module installed in your active environment)
 
 20. ``gh_actions``
 
-  * Adds a default `GitHub Actions`_ badge and ``.github/workflows/ci-test-matrix.yml`` configuration file to the rendered template, defaults to ``yes``
-  * Available options:
+   * Adds a default `GitHub Actions`_ badge and ``.github/workflows/ci-test-matrix.yml`` configuration file to the rendered template, defaults to ``yes``
+   * Available options:
 
-    * yes
-    * no
+      * yes
+      * no
 
 21. ``tox``
 
-  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
+   * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
 
 3. Initiate git version control
