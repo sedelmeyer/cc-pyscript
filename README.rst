@@ -18,11 +18,15 @@ Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generati
 Summary
 -------
 
-This Cookiecutter_ template allows for the creation of a fully tested Python scripting project. The benefits of using such a structure and implementing it with Cookiecutter is that it:
+This Cookiecutter_ template allows for the creation of a fully tested Python scripting project. The benefits of this Cookiecutter template include:
 
-* Takes the guesswork and low-value manual labor out of configuring a new scripting project,
-* Allows you to get started right away on your scripting work when starting a new project,
-* Creates a sense of consistency across your projects, making it easier for yourself and others to interpret and extend your code.
+* Scripts can be executed as standalone ``.py`` script files OR directly from the command-line entry-point as part of an installable Python application.
+
+* Finished scripts can be made as portable as you like, but can also benefit from added assurances of full unit-testing and test-matrix coverage using Tox_ and continuous integration services such as `GitHub Actions`_ (optional) or `Azure Pipelines`_ (optional, but not yet implemented).
+
+* If your project grows in complexity such that it needs to be reconfigured into a fully-featured Python library, minimal work is needed because the majority of the Python scaffolding needed to make that conversion is already implemented as part of the project.
+  
+* Conventions and best practices implemented using this template are similar to those used by the similar ``cc-pydata`` and ``cc-pyapp`` Cookiecutter templates, and their use when bootstrapping a new project creates a sense of consistency, making it easier for yourself and others to interpret and extend your code for any new project.
 
 .. _design:
 
@@ -56,8 +60,9 @@ The default ``cc-pyscript`` template makes use of the following tools and featur
 
 * Pipenv_ for package management and for generating a repeatable environment;
 * Automated testing using Tox_;
-* `GitHub Actions`_ for continuous integration;
-* Versioning with `setuptools_scm`_;
+* `GitHub Actions`_ for continuous integration (optional);
+* `Azure Pipelines`_ as an alternative continuous integration service (optional, but not yet implemented);
+* Project versioning with `setuptools_scm`_;
 * Packaging of your custom source code, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name``;
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
@@ -198,7 +203,7 @@ Articles related to Python packaging
 .. _setuptools_scm: https://github.com/pypa/setuptools_scm/
 .. _Pytest: http://pytest.org/
 .. _Pipenv: https://pipenv.readthedocs.io/en/latest/#
-.. _Azure Pipelines: https://azure.microsoft.com/en-us/services/devops/pipelines/
+.. _`Azure Pipelines`: https://azure.microsoft.com/en-us/services/devops/pipelines/
 .. _`GitHub Actions`: https://github.com/features/actions
 
 .. _`this project's full tutorial`: https://sedelmeyer.github.io/cc-pyscript/tutorial.html
