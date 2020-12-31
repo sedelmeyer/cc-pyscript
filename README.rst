@@ -63,10 +63,57 @@ The default ``cc-pyscript`` template makes use of the following tools and featur
 * `GitHub Actions`_ for continuous integration (optional);
 * `Azure Pipelines`_ as an alternative continuous integration service (optional, but not yet implemented);
 * Project versioning with `setuptools_scm`_;
-* Packaging of your custom source code, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name``;
+* Configuration of your individual script files for easy use as standalone Python scripts when used separately from the project repository (i.e. you can email someone just your ``.py`` script file, and they should be able to use it separate from the supporting Python package scaffolding);
+* Packaging of your Python scripts as part of an overarching module, allowing you to fully test your code and alternatively execute your scripts as an installable command-line entry-point;
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
 To see functionality anticipated for future versions of the ``cc-pyscript`` template, please see `the Changelog notes regarding future-releases <https://sedelmeyer.github.io/cc-pyscript/changelog.html#future-releases>`_.
+
+``cc-pyscript`` directory structure
+-----------------------------------
+
+Below is a high level overview of the resulting directory structure when you generate a ``cc-pyscript`` project template.
+
+.. code::
+
+    {{ repo_name }}
+
+      │
+      ├─ src/               <- Python source code for your project
+      │ └─ {{ package_name }}/       <- Default module containing your
+      │   │                             script (i.e. all scripts go here)
+      │   ├─ __init__.py             <- Makes this directory a module
+      │   └─ {{ script_name }}.py    <- The initial script saved to
+      │                                 this project
+      │
+      ├─ tests/             <- Unit tests for Python your script(s)
+      │ └─ test_{{ script_name }}.py <- Default tests for script
+      │
+      ├─ .github/           <- GitHub actions CI workflows (optional)
+      │ └─ workflows                 <- Workflows directory
+      │   └─ ci-test-matrix.yml      <- CI tests (runs tox matrix)
+      │
+      ├─ docs/              <- A default Sphinx project for generating
+      │ └─ ...                 documentation (if required)
+      │
+      ├─ .env               <- Sets project-specific environment
+      │                        variables such as credentials that you
+      │                        do not want committed to Git history
+      ├─ .gitignore         <- Specified files to ignore from Git
+      ├─ CHANGLOG.rst       <- Documents version-by-version changes
+      ├─ LICENSE            <- Project license (included if open source)
+      ├─ logging.json       <- Default logging configuration dictionary
+      ├─ Pipfile            <- Requirements file for reproducing your
+      │                        project environment using the Pipenv
+      │                        package manager
+      │                        (see pipenv.readthedocs.io)
+      ├─ README.rst         <- The top-level README for developers
+      ├─ setup.py           <- Setup script for the project using
+      │                        setuptools
+      ├─ setup.cfg          <- Contains default options for development
+      │                        tools (i.e. flake8, isort, pytest, etc.)
+      └─ tox.ini            <- Default tox-automated test configuration
+
 
 .. _requirements:
 
@@ -115,51 +162,6 @@ Alternatively, if you have a local working copy of the ``cc-pyscript`` project i
   cookiecutter <path-to-directory>/cc-pyscript
 
 **For a complete overview on how to generate and configure your** ``cc-pyscript`` **data science project,** please see `this project's full tutorial`_.
-
-``cc-pyscript`` directory structure
------------------------------------
-
-Below is a high level overview of the resulting directory structure when you generate a ``cc-pyscript`` project template.
-
-.. code::
-
-    {{ repo_name }}
-
-      │
-      ├─ src/               <- Python source code for your project
-      │ └─ {{ package_name }}/       <- Default module containing your
-      │   │                             script (i.e. all scripts go here)
-      │   ├─ __init__.py             <- Makes this directory a module
-      │   └─ {{ script_name }}.py    <- The initial script saved to
-      │                                 this project
-      │
-      ├─ tests/             <- Unit tests for Python your script(s)
-      │ └─ test_{{ script_name }}.py <- Default tests for script
-      │
-      ├─ .github/           <- GitHub actions CI workflows (optional)
-      │ └─ workflows                 <- Workflows directory
-      │   └─ ci-test-matrix.yml      <- CI tests (runs tox matrix)
-      │
-      ├─ docs/              <- A default Sphinx project for generating
-      │ └─ ...                 documentation (if required)
-      │
-      ├─ .env               <- Sets project-specific environment
-      │                        variables such as credentials that you
-      │                        do not want committed to Git history
-      ├─ .gitignore         <- Specified files to ignore from Git
-      ├─ CHANGLOG.rst       <- Documents version-by-version changes
-      ├─ LICENSE            <- Project license (included if open source)
-      ├─ logging.json       <- Default logging configuration dictionary
-      ├─ Pipfile            <- Requirements file for reproducing your
-      │                        project environment using the Pipenv
-      │                        package manager
-      │                        (see pipenv.readthedocs.io)
-      ├─ README.rst         <- The top-level README for developers
-      ├─ setup.py           <- Setup script for the project using
-      │                        setuptools
-      ├─ setup.cfg          <- Contains default options for development
-      │                        tools (i.e. flake8, isort, pytest, etc.)
-      └─ tox.ini            <- Default tox-automated test configuration
 
 .. _other resources:
 
