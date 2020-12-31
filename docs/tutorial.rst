@@ -3,7 +3,7 @@
 Tutorial
 ========
 
-This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-pyscript``) template, as well as some of this template's more important features.
+This tutorial walks through some of this template's more important features.
 
 .. contents:: Tutorial Contents
   :local:
@@ -51,7 +51,7 @@ There are many additional actions you can take to update and change dependencies
 
 
 Installing your local ``cc-pyscript`` package as an editable
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 If you inspect the ``cc-pyscript`` template's default ``Pipfile``, you will see that ``pipenv`` will install your newly created local ``cc-pyscript`` package as an "editable" under the ``[packages]`` section of that ``Pipfile``. More specifically, the line in the ``Pipfile`` that reads::
 
   package_name = {editable = true,path = "."}
@@ -448,7 +448,7 @@ Unit-testing your project and using the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Location of ``cc-pyscript`` unit tests
-""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
 
 The ``cc-pyscript`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory.
 
@@ -628,7 +628,7 @@ For instructions on how to accomplish this, please `see the Travis-CI instructio
 
 
 Logging configuration and out-of-the-box ``cc-pyscript`` logging features
------------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 The ``cc-pyscript`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
 
@@ -676,7 +676,7 @@ As a default, ``start_logging`` will import the ``logging`` dictionary configura
 If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a ``logging.basicConfig()`` `configuration <https://docs.python.org/3/library/logging.html#logging.basicConfig>`_ will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
 
 Diagram illustrating the Default ``cc-pyscript`` project logging behavior
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Below is a flow diagram illustrating the default project logging behavior described above:
 
@@ -770,7 +770,7 @@ Example::
 
 
 The ``<package-name>.logger.logfunc()`` decorator function
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 This function acts as a ``functools.wraps`` `decorator for decorating functions or methods <https://docs.python.org/3/library/functools.html#functools.wraps>`_ to provide logging functionality to log details of the decorated function
 
