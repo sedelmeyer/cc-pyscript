@@ -3,268 +3,13 @@
 Tutorial
 ========
 
-This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-pydata``) template, as well as some of this template's more important features.
+This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-pyscript``) template, as well as some of this template's more important features.
 
 .. contents:: Tutorial Contents
   :local:
   :depth: 1
   :backlinks: top
 
-.. _directory structure:
-
-``cc-pydata`` project template structure
-----------------------------------------
-
-When you generate a ``cc-pydata`` data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
-
-    cc-pydata Project Directory
-    │
-    ├── LICENSE
-    ├── README.rst        <- Top-level README for developers
-    ├── CHANGLOG.rst      <- Documents version-by-version changes
-    ├── Pipfile           <- Requirements file for reproducing the
-    │                        analysis environment using the Pipenv
-    │                        package manager
-    │                        (see pipenv.readthedocs.io)
-    ├── .env              <- Sets project-specific environmnt variables
-    │                        such as credentials that you do not want
-    │                        committed to Git history
-    ├── data              <- All data files related to the project.
-    │   │                    Files contained in this directory are
-    │   │                    ommitted from Git history via .gitignore
-    │   ├── raw/          <- The original data file(s) that, for the
-    │   │                    purpose of reproducibility, should never
-    │   │                    be modified
-    │   ├── interim/      <- Data that has been cleaned or transformed
-    │   └── processed/    <- The final data set(s) used for modeling
-    │
-    ├── docs              <- A default Sphinx project for generating
-    │   │                    project documentation
-    │   └── _static
-    │       └── figures/  <- Generated graphics and figures to be used
-    │                        in Sphinx generated docs
-    ├── models/           <- Trained and serialized models, model
-    │                        predictions, or model summaries
-    │
-    ├── notebooks/        <- Jupyter notebooks, named using a number
-    │                        and descriptive title so sequential run-
-    │                        order and purpose are explicit, e.g.
-    │                        "001-EDA-property-assessments.ipynb"
-    │
-    ├── references        <- Data dictionaries, manuals, and all other
-    │   │                    explanatory materials
-    │   └── third-party/  <- Third-party and copyrighted materials you
-    │                        do not want committed to Git history
-    │
-    ├── reports           <- Generated analysis as HTML, PDF, etc.
-    │   └── figures/      <- Generated graphics and figures to be used
-    │                        in reporting
-    │
-    ├── src               <- Source code for use in this project
-    │   └── <package-name>
-    │       ├── data/          <- Submodule for downloading and
-    │       │                     cleansing data
-    │       ├── features/      <- Submodule for generating engineered
-    │       │                     features for modeling
-    │       ├── models/        <- Submodule for training models and
-    │       │                     generating predictions
-    │       ├── visualizations/<- Submodule for generating
-    │       │                     visualizations
-    │       ├── logger/        <- Submodule for project logging-related
-    │       │                     functionality
-    │       ├── __init__.py    <- Makes src a Python module
-    │       ├── __main__.py    <- Entry point module
-    │       └── cli.py         <- Module for creating the command line
-    │                             interface for the project
-    │
-    ├── .gitignore        <- Specified files to exclude from Git
-    │                        history (as a default, `.env`, `./data/`
-    │                        files, and `*/third-party/` files are all
-    │                        excluded)
-    ├── .travis.yml       <- Configuration for Travis-CI services
-    │                        (see travis-ci.com)
-    ├── logging.json      <- Default logging configuration dictionary
-    ├── setup.py          <- Setup script for the project using
-    │
-    ├── setup.cfg         <- Option defaults for setup.py commands
-    │
-    └── tox.ini           <- Default tox-automated test configuration
-
-.. _getting started:
-
-Generating a new template
--------------------------
-
-.. contents:: In this section
-  :local:
-  :backlinks: top
-
-0. Ensure all prerequisites are met
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-See the :ref:`requirements` section of the ``cc-pydata`` :ref:`README<readme>` documentation to ensure basic system dependencies are met.
-
-1. Initiate the template using Cookiecutter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Generating a ``cc-pydata`` project template is as simple as running the following command from your terminal::
-
-  cookiecutter gh:sedelmeyer/cc-pydata
-
-Alternatively, if you have a local working copy of the ``cc-pydata`` project in which you've made customizations to the template, you can run::
-
-  cookiecutter <path-to-directory>/cc-pydata
-
-
-2. Complete template prompts required to generate the template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The below listed prompts will be presented on the command-line after initiating your project template (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Bob Smith]:``).
-
-To modify defaults or customize these prompts, you can do so in the ``cookiecutter.json`` file. Additional information on the ``cookiecutter.json`` file can be found in `the Cookiecutter "choice variables" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/choice_variables.html>`_.
-
-Additionally, if you would like to auto-populate the values for any of these prompts, you can also create a ``.cookiecutterrc`` configuration file as is outlined in `the Cookiecutter "user config" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/user_config.html#user-config>`_.
-
-"Choice variable" template prompts
-""""""""""""""""""""""""""""""""""
-
-1. ``full_name``
-
-  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
-
-2. ``email``
-
-  * Contact email of the author (used in ``setup.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
-
-3. ``website``
-
-  * Website of the author (not yet used in resulting template).
-  * Can be set in your ``~/.cookiecutterrc`` config file
-
-4. ``github_username``
-
-  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``)
-  * Can be set in your ``~/.cookiecutterrc`` config file
-
-5. ``project_name``
-
-  * Verbose project name (used in headings in ``README.rst``, ``docs/index.rst``, etc.)
-
-6. ``repo_name``
-
-  * Repository root-directory name and repo name on GitHub (used in ``setup.py``, ``docs/conf.py``, and for GitHub links)
-
-7. ``package_name``
-
-  * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
-
-8. ``distribution_name``
-
-  * PyPI distribution name (what you would ``pip install``)
-
-9. ``project_short_description``
-
-  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
-
-10. ``release_date``
-
-  * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
-
-11. ``year_from``
-
-  * Initial copyright year (used in Sphinx ``docs/conf.py``)
-
-12. ``version``
-
-  * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
-
-13. ``scm_versioning``
-
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
-
-14. ``license``
-
-  * License to use in the rendered template
-  * Available options:
-
-    * MIT license
-    * BSD 2-Clause license
-    * BSD 3-Clause license
-    * ISC license
-    * Apache Software License 2.0
-    * Not open source
-
-  * If need help deciding which license to pick, see this: https://choosealicense.com/
-
-15. ``test_runner``
-
-  * Available options: ``pytest`` only
-
-16. ``linter``
-
-  * Available options: ``flake8`` only
-
-17. ``command_line_interface``
-
-  * Enables a CLI bin/executable file.
-  * Available options: ``argparse`` only
-
-18. ``command_line_interface_bin_name``
-
-  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal)
-
-19. ``travis``
-
-  * Adds a default Travis-CI_ badge and ``.travis.yml`` configuration file to the rendered template, defaults to ``yes``
-  * Available options:
-
-    * yes
-    * no
-
-20. ``tox``
-
-  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes``
-  * Available options:
-
-    * yes
-    * no
-
-3. Initiate git version control
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The first thing you should do once your template has been generated is to ``cd`` into your new repository and initialize ``git``::
-
-  cd <newly-generate-directory>
-  git init
-
-This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initialized for your project, the ``pipenv`` install of your local package will fail in the next step below.
-
-.. _install-pipenv:
-
-4. Install your new ``pipenv`` environment from the Pipfile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv_ virtual environment::
-
-    pipenv install --dev
-
-Note that the ``--dev`` option is specified so that both development and package dependencies are installed in your Pipenv environment.
-
-To activate your environment after it has been created::
-
-    pipenv shell
-
-To deactivate your environment::
-
-    exit
-
-For a more complete overview of how to use ``pipenv`` for package and dependencies management, please see the Pipenv_ project page.
-
-**Congratulations!** You've stood up a new ``cc-pydata`` data science project template!
-
-**Now it's time to explore some of the features of this template!**
 
 .. _packaging:
 
@@ -290,7 +35,7 @@ Chances are, if you have been using ``virtualenv`` or ``conda`` to manage your P
 Adding / installing dependencies using ``pipenv``
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-As was shown in the section :ref:`install-pipenv` above, creating a ``pipenv`` environment and ``Pipfile.lock`` deterministic build is as easy as running ``pipenv install --dev`` from your ``cc-pydata`` project directory.
+As was shown in the section :ref:`install-pipenv` above, creating a ``pipenv`` environment and ``Pipfile.lock`` deterministic build is as easy as running ``pipenv install --dev`` from your ``cc-pyscript`` project directory.
 
 To add additional dependencies to your project, you can either:
 
@@ -302,12 +47,12 @@ There are many additional actions you can take to update and change dependencies
 
 * To learn more, please see the `documentation on the basic usage of Pipenv <https://pipenv.pypa.io/en/latest/basics/>`_.
 
-* If your preference is to manage dependencies using the ``setup.py`` ``install_requires`` argument, please take some time to `read the distinctions between Pipfile vs. setup.py <https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy>`_, and think carefully about the distinctions between managing dependencies for a Python "application" such as that which you are creating with the ``cc-pydata`` template versus a Python "library", which the ``cc-pydata`` template is not.
+* If your preference is to manage dependencies using the ``setup.py`` ``install_requires`` argument, please take some time to `read the distinctions between Pipfile vs. setup.py <https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy>`_, and think carefully about the distinctions between managing dependencies for a Python "application" such as that which you are creating with the ``cc-pyscript`` template versus a Python "library", which the ``cc-pyscript`` template is not.
 
 
-Installing your local ``cc-pydata`` package as an editable
+Installing your local ``cc-pyscript`` package as an editable
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see that ``pipenv`` will install your newly created local ``cc-pydata`` package as an "editable" under the ``[packages]`` section of that ``Pipfile``. More specifically, the line in the ``Pipfile`` that reads::
+If you inspect the ``cc-pyscript`` template's default ``Pipfile``, you will see that ``pipenv`` will install your newly created local ``cc-pyscript`` package as an "editable" under the ``[packages]`` section of that ``Pipfile``. More specifically, the line in the ``Pipfile`` that reads::
 
   package_name = {editable = true,path = "."}
 
@@ -324,7 +69,7 @@ If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see th
 Managing environment variables with the ``.env`` file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you generate a new ``cc-pydata`` project using this template, by default you will be provided with a ``.env`` file in which you can set environment variables specific to your project.
+When you generate a new ``cc-pyscript`` project using this template, by default you will be provided with a ``.env`` file in which you can set environment variables specific to your project.
 
 * This ``.env`` file can be used for setting secret keys, credentials, or filepaths you need for your project, but would like to keep secret.
 * By default, the ``.gitignore`` for this project is set to ignore the ``.env`` file.
@@ -332,9 +77,9 @@ When you generate a new ``cc-pydata`` project using this template, by default yo
 
 Typically, to load and access the environment variables saved to your ``.env`` file you would need to use a tool such as `python-dotenv <https://saurabh-kumar.com/python-dotenv/>`_.
 
-But alas, because we are using ``pipenv`` to manage our ``cc-pydata`` project environment, ``pipenv`` **will automatically load your** ``.env`` **environment variables to your environment when you enter your** ``pipenv shell`` **or use** ``pipenv run``.
+But alas, because we are using ``pipenv`` to manage our ``cc-pyscript`` project environment, ``pipenv`` **will automatically load your** ``.env`` **environment variables to your environment when you enter your** ``pipenv shell`` **or use** ``pipenv run``.
 
-For instance, if you have a secret key you wish to access programatically when running your ``cc-pydata`` package locally, you can add the following to your ``.env`` file::
+For instance, if you have a secret key you wish to access programatically when running your ``cc-pyscript`` package locally, you can add the following to your ``.env`` file::
 
     SECRET_KEY=YOURSECRETKEY
 
@@ -352,7 +97,7 @@ To learn more about this ``pipenv`` behavior, please see the documentation on `P
 Accessing modules in your package from a Jupyter Notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you would like to incorporate Jupyter notebooks into your ``cc-pydata`` project, you will first need to install the ``jupyter`` package in your ``pipenv`` environment::
+If you would like to incorporate Jupyter notebooks into your ``cc-pyscript`` project, you will first need to install the ``jupyter`` package in your ``pipenv`` environment::
 
     pipenv install --dev jupyter
 
@@ -363,7 +108,7 @@ Then, once ``jupyter`` is installed, you can start your notebook server by runni
 
 It is recommended that you create and store all Jupyter notebooks in the provided ``notebooks`` directory for consistency.
 
-The ``cc-pydata`` package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import::
+The ``cc-pyscript`` package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import::
 
     # example of importing the local `visualizations` module
     from <package-name> import visualizations
@@ -378,11 +123,11 @@ Therefore, there is no need to import `src`. Instead, you can use the more natur
 Versioning your project with ``git`` tags and ``setuptools_scm``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pydata`` template is configured to make use of `setuptools_scm`_ to manage and track your ``cc-pydata`` project's current version.
+The ``cc-pyscript`` template is configured to make use of `setuptools_scm`_ to manage and track your ``cc-pyscript`` project's current version.
 
-There are a number of different ways to maintain a Python project's current version. For a survey of different approaches to maintain a "single source of truth" for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on `Single-sourcing the package version`_. ``cc-pydata`` makes use of option #7 in that article.
+There are a number of different ways to maintain a Python project's current version. For a survey of different approaches to maintain a "single source of truth" for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on `Single-sourcing the package version`_. ``cc-pyscript`` makes use of option #7 in that article.
 
-By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project.
+By using ``setuptools_scm``, your ``cc-pyscript`` application pulls the version number directly from the latest ``git`` tag associated with your project.
 
 Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
 
@@ -488,7 +233,7 @@ Documenting your project using Sphinx and GitHub Pages
 Getting started with Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to `the template's base Pipfile <https://github.com/sedelmeyer/cc-pydata/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile>`_. Therefore, when you run ``pipenv install --dev`` for the first time for your new project (see :ref:`install-pipenv`), ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
+The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to `the template's base Pipfile <https://github.com/sedelmeyer/cc-pyscript/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile>`_. Therefore, when you run ``pipenv install --dev`` for the first time for your new project (see :ref:`install-pipenv`), ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
 
 * **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
 * **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
@@ -557,9 +302,9 @@ Sphinx can also generate documentation from the Google- and Numpy-formatted docs
 
 .. note::
 
-   * The first time you run ``make html`` as was described in :ref:`make-html`, the ``docs/modules.rst`` file contained in the default ``cc-pydata`` template will generate a starter "API Reference" page documenting all modules and functions already contained in the ``cc-pydata`` template. That initial ``modules.rst`` file makes use of the manual approach #1 listed above and uses the ``sphinx.ext.autodoc`` extension's ``automodule`` `directive <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automodule>`_ to generate that starter documentation.
+   * The first time you run ``make html`` as was described in :ref:`make-html`, the ``docs/modules.rst`` file contained in the default ``cc-pyscript`` template will generate a starter "API Reference" page documenting all modules and functions already contained in the ``cc-pyscript`` template. That initial ``modules.rst`` file makes use of the manual approach #1 listed above and uses the ``sphinx.ext.autodoc`` extension's ``automodule`` `directive <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automodule>`_ to generate that starter documentation.
 
-   * All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pydata`` template's ``conf.py`` Sphinx configuration file.
+   * All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pyscript`` template's ``conf.py`` Sphinx configuration file.
 
 
 Rationale for using reStructuredText instead of Markdown
@@ -569,13 +314,13 @@ GitHub, Jupyter notebooks, and other static site generators typically rely on Ma
 
 QUESTION:
 
-* So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown?
+* So then, why does the ``cc-pyscript`` project template use reStructuredText instead of Markdown?
 * Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown.
 
 ANSWER:
 
 * Because benefits abound, particularly for technical writing (once you get past the initial learning curve).
-* And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
+* And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pyscript`` project, reStructuredText is the better choice.
 
 Here are a few primary reasons worth highlighting:
 
@@ -590,7 +335,7 @@ Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site
 GitHub Pages strongly favors GitHub's homegrown static site generator `Jekyll <https://jekyllrb.com/>`_ and it's hella simple to use for some basic web publishing needs.
 
 * Unfortunately, Jekyll is a Ruby-based tool.
-* That means, if you use Jekyll, you'll need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation.
+* That means, if you use Jekyll, you'll need to run both a Ruby environment and Python environment to publish your ``cc-pyscript`` documentation.
 
 Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx)!
 
@@ -606,9 +351,9 @@ Information about other popular "built-in" Sphinx extensions that help to make S
 Adding a logo to your Sphinx site
 """""""""""""""""""""""""""""""""
 
-The default theme used for the Sphinx docs in the ``cc-pydata`` template is called `Alabaster <https://alabaster.readthedocs.io/en/latest/>`_. It's clean, responsive, and configurable. Did I mention it was clean?
+The default theme used for the Sphinx docs in the ``cc-pyscript`` template is called `Alabaster <https://alabaster.readthedocs.io/en/latest/>`_. It's clean, responsive, and configurable. Did I mention it was clean?
 
-The Alabaster theme provides a simple option for adding a site logo to the top of the lefthand navbar. A reasonable width for that logo image is 200 pixels. To add a logo to your ``cc-pydata`` project documentation, simply:
+The Alabaster theme provides a simple option for adding a site logo to the top of the lefthand navbar. A reasonable width for that logo image is 200 pixels. To add a logo to your ``cc-pyscript`` project documentation, simply:
 
 #. Save your 200-pixel-width image file (e.g. as .jpg or .png file) to the ``docs/`` directory, and name it ``docs/logo.png`` (with the appropriate file extension of course).
 #. Go to the ``docs/conf.py`` file and uncomment the ``logo`` setting in the ``html_theme_options`` dictionary.
@@ -702,27 +447,27 @@ Test configuration and continuous integration with Travis-CI
 Unit-testing your project and using the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Location of ``cc-pydata`` unit tests
+Location of ``cc-pyscript`` unit tests
 """"""""""""""""""""""""""""""""""""
 
-The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory.
+The ``cc-pyscript`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory.
 
 * Opinions and rationale about where to store Python unit tests vary.
-* Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pydata``.
+* Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pyscript``.
 * Sometimes circumstances and/or preferences warrant using one location over another.
-* To keep things simple, and to make it easy to locate tests in your project, the current ``tests/`` location has been chosen for the ``cc-pydata`` template.
+* To keep things simple, and to make it easy to locate tests in your project, the current ``tests/`` location has been chosen for the ``cc-pyscript`` template.
 * However, you should feel free to relocate your unit tests to a different location if it makes sense for you or your project.
 
 ``pytest`` test-runner
 """"""""""""""""""""""
 
-* ``pytest`` and ``pytest-cov`` are installed as default ``dev-packages`` in the base ``Pipfile`` included with the ``cc-pydata`` project template.
+* ``pytest`` and ``pytest-cov`` are installed as default ``dev-packages`` in the base ``Pipfile`` included with the ``cc-pyscript`` project template.
 * `Pytest`_ makes for a simple yet powerful test-runner for test discovery, reporting, and simple diagnostics; and `pytest-cov <https://pytest-cov.readthedocs.io/en/latest/readme.html>`_ produces coverage reports.
 
 Running unit tests using ``pytest``
 """""""""""""""""""""""""""""""""""
 
-At any time during development of your ``cc-pydata`` project, you can run your entire suite of unit tests. The two easiest methods for doing this are:
+At any time during development of your ``cc-pyscript`` project, you can run your entire suite of unit tests. The two easiest methods for doing this are:
 
 #. If you aren't currently in your project's ``pipenv`` environment, run::
 
@@ -741,7 +486,7 @@ The ``pytest`` test-runner is a powerful command-line tool. There are far too ma
 * Please see `the documentation regarding the Usage and Invocations <https://docs.pytest.org/en/latest/usage.html>`_ of ``python -m pytest``;
 * Additionally, you can see the complete listing of available ``pytest`` arguments in the "help" documentation by running ``pytest -h``.
 
-Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pydata`` test output will look something like this if there are no test failures:
+Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pyscript`` test output will look something like this if there are no test failures:
 
 .. code-block:: bash
 
@@ -779,7 +524,7 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
 Test matrix automation using ``tox``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pydata`` template includes the options to render the resulting template with ``tox`` automated testing.
+The ``cc-pyscript`` template includes the options to render the resulting template with ``tox`` automated testing.
 
 If you are not familiar with Python's test automation tool `Tox`_, learning to use it is well worth the investment in time.
 
@@ -795,17 +540,17 @@ Alternatively, you can run individual ``tox`` environments (instead of all at on
 
    tox -e docs
 
-If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be no ``tox.ini`` file contained in the final rendered template and ``tox`` will not be included in the ``Pipfile`` ``dev-packages`` requirements.
+If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be no ``tox.ini`` file contained in the final rendered template and ``tox`` will not be included in the ``Pipfile`` ``dev-packages`` requirements.
 
 Configuring and leveraging Travis-CI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pydata`` project template offers the option to configure the rendered template to use `Travis-CI`_ services for continuous integration testing.
+The ``cc-pyscript`` project template offers the option to configure the rendered template to use `Travis-CI`_ services for continuous integration testing.
 
-* The ``.travis.yml`` file provided in the ``cc-pydata`` project template is used to configure your `Travis-CI`_ build.
+* The ``.travis.yml`` file provided in the ``cc-pyscript`` project template is used to configure your `Travis-CI`_ build.
 * For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration (CI), please `see their article on core CI concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
 
-If you select ``"no"`` for the ``travis`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be neither a ``.travis.yml`` file added to the finished template, nor will there be a Travis build-badge included in the rendered template's default documentation.
+If you select ``"no"`` for the ``travis`` choice variable prompt during the ``cc-pyscript`` template rendering process, there will be neither a ``.travis.yml`` file added to the finished template, nor will there be a Travis build-badge included in the rendered template's default documentation.
 
 The default ``.travis.yml`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -819,7 +564,7 @@ If ``"no"`` is selected for the ``tox`` option, but ``"yes"`` is selected for ``
 1. A ``tests`` stage that calls the ``pytest`` test-runner to ensure all tests pass, as well as...
 2. An ``answers`` stage that ensures the template package's ``main`` entry-point exits with a status of ``0`` when run.
 
-To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file when ``tox`` is not enabled for the template (with comments added to describe what each item means).
+To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing what is contained in the ``cc-pyscript`` default ``.travis.yml`` file when ``tox`` is not enabled for the template (with comments added to describe what each item means).
 
 .. code-block:: yaml
 
@@ -859,7 +604,7 @@ To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing
     # you have defined above. For the "test" stage, your pipenv
     # environment will be installed and your tests will execute using
     # the pytest test runner set to verbose mode. For the "answers"
-    # stage, the code in your cc-pydata package's main module will be
+    # stage, the code in your cc-pyscript package's main module will be
     # run.
     jobs:
     include:
@@ -877,15 +622,15 @@ To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing
 Setting up travis-ci.com to run CI builds for your project
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-In order for Travis-CI to run builds for your project when you push to your GitHub-hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account and for your specific ``cc-pydata`` rendered template repository on GitHub.
+In order for Travis-CI to run builds for your project when you push to your GitHub-hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account and for your specific ``cc-pyscript`` rendered template repository on GitHub.
 
 For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
 
 
-Logging configuration and out-of-the-box ``cc-pydata`` logging features
+Logging configuration and out-of-the-box ``cc-pyscript`` logging features
 -----------------------------------------------------------------------
 
-The ``cc-pydata`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
+The ``cc-pyscript`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
 
 The defaults provided (and described below), rely only on the ``logging`` `module included in Python's standard library <https://docs.python.org/3/library/logging.html>`_.
 
@@ -897,19 +642,19 @@ The defaults provided (and described below), rely only on the ``logging`` `modul
 Default ``logging`` configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default logging configuration of the ``cc-pydata`` application provides the flexibility to program logging events into your application, then to easily choose whether or not to enable logging of those events for any given session in which you import and run your application.
+The default logging configuration of the ``cc-pyscript`` application provides the flexibility to program logging events into your application, then to easily choose whether or not to enable logging of those events for any given session in which you import and run your application.
 
 For intance:
 
 * If you don't explicitly initialize an active handler during your session, a package-level do-nothing ``NullHandler`` will silence all logging events generated by your application.
-* On the otherhand, if you do want events actively logged during your session, you easily use the custom ``logger.start_logging()`` function call provided in the base ``cc-pydata`` template.
+* On the otherhand, if you do want events actively logged during your session, you easily use the custom ``logger.start_logging()`` function call provided in the base ``cc-pyscript`` template.
 
 More on both of these options are outlined below...
 
 The package-level ``NullHandler`` initialized at import
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-As a default, a do-nothing handler (a.k.a. ``logging.NullHandler()``) is set at the time of import for your ``cc-pydata`` application. This behavior helps to ensure logs are not printed unless you explicity choose to activate logging while running your ``cc-pydata`` application.
+As a default, a do-nothing handler (a.k.a. ``logging.NullHandler()``) is set at the time of import for your ``cc-pyscript`` application. This behavior helps to ensure logs are not printed unless you explicity choose to activate logging while running your ``cc-pyscript`` application.
 
 To accomplish this, the top-level ``__init__.py`` file contains the following code::
 
@@ -924,13 +669,13 @@ This ensures a handler is always found for your application's logging events, pr
 Initializing active logging with the ``<package-name>.logger.start_logging()`` function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-To active logging for any given session during which you import and run your ``cc-pydata`` application, all you need to do is run the provided ``<package-name>.logger.start_logging()`` custom function.
+To active logging for any given session during which you import and run your ``cc-pyscript`` application, all you need to do is run the provided ``<package-name>.logger.start_logging()`` custom function.
 
-As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pydata`` project template.
+As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pyscript`` project template.
 
 If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a ``logging.basicConfig()`` `configuration <https://docs.python.org/3/library/logging.html#logging.basicConfig>`_ will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
 
-Diagram illustrating the Default ``cc-pydata`` project logging behavior
+Diagram illustrating the Default ``cc-pyscript`` project logging behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Below is a flow diagram illustrating the default project logging behavior described above:
@@ -968,9 +713,9 @@ Below is a flow diagram illustrating the default project logging behavior descri
 Customizing the provided ``logging.json`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-When calling ``<package-name>.logger.start_logging()`` from your ``cc-pydata`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
+When calling ``<package-name>.logger.start_logging()`` from your ``cc-pyscript`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
 
-The default ``logging.json`` configuration file provided with the ``cc-pydata`` template simply provides a single ``root`` handler that logs to ``sys.stdout`` at the ``INFO`` logging level.
+The default ``logging.json`` configuration file provided with the ``cc-pyscript`` template simply provides a single ``root`` handler that logs to ``sys.stdout`` at the ``INFO`` logging level.
 
 To add additional handlers, change logging levels, change formatters, or add filters to this ``logging.json`` file, please see:
 
@@ -982,7 +727,7 @@ To add additional handlers, change logging levels, change formatters, or add fil
 Functions provided in the custom ``<package-name>.logger`` module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pydata`` project template provides a built in custom logging module located at the ``<package-name>.logger`` namespace.
+The ``cc-pyscript`` project template provides a built in custom logging module located at the ``<package-name>.logger`` namespace.
 
 This ``logger`` module has been kept simple with the thought that users can build additional logging functionality to suite the needs of their own data science project.
 
@@ -991,7 +736,7 @@ The ``logger`` module comes with two provided functions:
 .. list-table::
 
    * - ``<package-name>.logger.start_logging(...)``
-     - Set up logging configuration for the ``cc-pydata`` project package
+     - Set up logging configuration for the ``cc-pyscript`` project package
    * - ``<package-name>.logger.logfunc(...)``
      - Decorator wrap function call to provide log information when a function is called
 
@@ -1001,7 +746,7 @@ Both ``logger`` functions are described in greater detail below.
 The ``<package-name>.logger.start_logging()`` function
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-This function activates a ``logging`` configuration for the ``cc-pydata`` project package during your current session.
+This function activates a ``logging`` configuration for the ``cc-pyscript`` project package during your current session.
 
 :param default_path: string file path for json formatted
                         logging configuration file (default is
