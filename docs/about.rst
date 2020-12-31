@@ -25,7 +25,7 @@ Development philosophy
 
 As is discussed in the :ref:`design` section of the ``cc-pyscript`` documentation, I have sought to balance Python best practices and standards with my own needs across a wide range of projects. What's more, I've also sought to embed structural characteristics of other great Cookiecutter templates (see :ref:`sources`).
 
-Starting from those initial principals, I hope to have built a Cookiecutter template that is flexible and robust enough for others to find useful for their own Python data science projects.
+Starting from those initial principals, I hope to have built a Cookiecutter template that is flexible and robust enough for others to find useful for their own Python scripting projects.
 
 I have taken the time to :ref:`carefully test<project-testing>` and document the ``cc-pyscript`` project, both for my own sake, as well as for the sake of others who might find this project and wish to use it themselves.
 
@@ -101,13 +101,13 @@ Tests for this project occur in several ways.
 
    * There are additionally unit tests built into the rendered template produced by this project. Those in-template tests ensure that the baseline package provided in that rendered template functions correctly (presenting the opportunity for *tests within tests*).
 
-2. There are :ref:`a set of automated tests configured<test-automation>` using ``tox`` to ensure that the ``cc-pyscript`` project functions correctly on several different versions of Python (those versions are ``python 3.6``, ``python 3.7``, and ``python 3.8`` as of ``cc-pyscript==v0.3.0`` at the time of my writing this).
+2. There are :ref:`a set of automated tests configured<test-automation>` using ``tox`` to ensure that the ``cc-pyscript`` project functions correctly on several different versions of Python (those versions are ``python 3.7`` and ``python 3.8`` as of ``cc-pyscript v0.1.0`` at the time of my writing this).
 
    * This ``tox`` configuration also runs a documentation test build to ensure that the ``cc-pyscript`` Sphinx-based documentation renders successfully, and it runs a linter to ensure that the project code meets `PEP 8`_ standards.
 
    * Also, dependent on whether the ``tox`` option is enabled for the rendered ``cc-pyscript`` template, the rendered template itself will also contain a ``tox``-automated test-configuration. That in-template ``tox`` configuration will perform similar tasks for the resulting rendered template (and here is our true layer of *tests within tests*).
 
-3. Lastly, :ref:`continuous integration is implemented<ci-services>` using `Travis-CI`_ (and soon to also be implemented using `GitHub Actions`_) to run and test automated builds each time committed revisions to the ``cc-pyscript`` project are pushed to the GitHub-hosted remote ``develop`` or ``master`` branches for the project.
+3. Lastly, :ref:`continuous integration is implemented<ci-services>` using `GitHub Actions`_ to run and test automated builds each time committed revisions to the ``cc-pyscript`` project are pushed to the GitHub-hosted remote ``develop`` or ``master`` branches for the project.
 
 .. _`test-automation`:
 
@@ -129,24 +129,18 @@ Additionally, you can run individual ``tox`` environments (instead of all at onc
 
    tox -e docs
 
+
 .. _`ci-services`:
 
-Continuous integration test builds with Travis-CI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Continuous integration test builds with GitHub Actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Continuous integration (CI) build tests are set to run via `Travis-CI`_ every time a change is pushed to either the ``master`` or ``develop`` branches.
+Continuous integration (CI) build tests are set to run via `GitHub Actions`_ every time a change is pushed to either the ``master`` or ``develop`` remote branches.
 
 These CI tests ensure that the ``cc-pyscript`` ``tox``-automated test matrix runs successfully on a Linux system.
 
-Please see the ``cc-pyscript`` project's ``.travis.yml`` configuration file for more detail.
+Please see the ``cc-pyscript`` project's ``.github/workflows/ci-test-matrix.yml`` configuration file for more detail.
 
-.. note::
-
-   There are currently plans to migrate this CI automation from Travis-CI over to GitHub's native `GitHub Actions`_ service.
-
-   * The primary reason for this planned change is that GitHub Actions offers Windows OS images for CI testing, while Travis-CI does not.
-   * During this planned CI service migration, MacOS builds will also be added to the CI build matrix.
-   * I occasionally use all three of these operating systems for my development work and would appreciate the added assurance that my project and rendered templates run successfully on all three platforms.
 
 .. _`unit-tests`:
 
