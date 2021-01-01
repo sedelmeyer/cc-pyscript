@@ -8,6 +8,7 @@ v0.2.0 (Future Release)
 
 * Add Azure Pipelines continuous integration option
 * Add basic logger functionality to script template
+* Add pre-/post-release checklist section to ``docs/about.rst``
 
 v0.1.0 (2021-01-01)
 -------------------
