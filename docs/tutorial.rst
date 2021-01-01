@@ -472,7 +472,7 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
   plugins: cov-2.10.1
   collected 7 items
   
-  tests/test_nameless_cc_pyscript.py .......                    [100%]
+  tests/test_script_name.py .......                             [100%]
   
   ---------- coverage: platform linux, python 3.7.9-final-0 ----------
   Name                                 Stmts  Miss Branch BrPart Cover
@@ -549,7 +549,7 @@ To modify the branches on which your GitHub Actions are built, or to change the 
 However, please note that other changes may need to be made to your template in order for tests to pass on other operating systems.
 
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
 .. _`ionelmc/cookiecutter-pylibrary`: https://github.com/ionelmc/cookiecutter-pylibrary
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/

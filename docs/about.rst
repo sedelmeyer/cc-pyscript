@@ -11,7 +11,7 @@ This page contains information to help you learn a bit more about the ``cc-pyscr
 
 * If you want to (a) learn more about the how to generate or use the resulting ``cc-pyscript`` template or (b) better understand the features and functionality embedded in the resulting ``cc-pyscript`` template, please see the :ref:`Tutorial` for this project.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 
 .. contents:: On this page
   :local:
