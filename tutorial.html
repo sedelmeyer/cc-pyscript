@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial &#8212; cc-pyscript v0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="About this project" href="about.html" />
+    <link rel="prev" title="Cookiecutter PyScript" href="readme.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial walks through some of this template’s more important features.</p>
+<div class="contents local topic" id="tutorial-contents">
+<p class="topic-title">Tutorial Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id4">Packaging characteristics of this template</a></p></li>
+<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id5">Documenting your project using Sphinx and GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-github-actions" id="id6">Test configuration and continuous integration with GitHub Actions</a></p></li>
+</ul>
+</div>
+<div class="section" id="packaging-characteristics-of-this-template">
+<span id="packaging"></span><h2><a class="toc-backref" href="#tutorial-contents">Packaging characteristics of this template</a><a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="in-this-section">
+<p class="topic-title">In this section</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id7">Using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage your project dependencies</a></p>
+<ul>
+<li><p><a class="reference internal" href="#adding-installing-dependencies-using-pipenv" id="id8">Adding / installing dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a></p></li>
+<li><p><a class="reference internal" href="#installing-your-local-cc-pyscript-package-as-an-editable" id="id9">Installing your local <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> package as an editable</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id10">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
+<li><p><a class="reference internal" href="#versioning-your-project-with-git-tags-and-setuptools-scm" id="id11">Versioning your project with <code class="docutils literal notranslate"><span class="pre">git</span></code> tags and <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="#implications-for-choosing-an-effective-git-branching-methodology" id="id12">Implications for choosing an effective <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology</a></p></li>
+<li><p><a class="reference internal" href="#implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme" id="id13">Implications for using Semantic Versioning as a consistent version-numbering scheme</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="using-pipenv-to-manage-your-project-dependencies">
+<h3><a class="toc-backref" href="#in-this-section">Using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage your project dependencies</a><a class="headerlink" href="#using-pipenv-to-manage-your-project-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>If you are new to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for dependency and package management, it may take a little time to get used to it. The best place to start is by taking some time to review core principles, benefits, and usage on the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page.</p>
+<p>Chances are, if you have been using <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your Python virtual environments up to this point, then you’ll probably wonder how you’ve made it this far without using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> previously. As is described on the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page:</p>
+<blockquote>
+<div><p>“<strong>Pipenv</strong> is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. <em>Windows is a first-class citizen, in our world.</em>”</p>
+<p>“It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> as you install/uninstall packages. It also generates the ever-important <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code>, which is used to produce deterministic builds.”</p>
+</div></blockquote>
+<div class="section" id="adding-installing-dependencies-using-pipenv">
+<h4><a class="toc-backref" href="#in-this-section">Adding / installing dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a><a class="headerlink" href="#adding-installing-dependencies-using-pipenv" title="Permalink to this headline">¶</a></h4>
+<p>As was shown in the section <a class="reference internal" href="readme.html#install-pipenv"><span class="std std-ref">4. Install your new pipenv environment from the Pipfile</span></a> above, creating a <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment and <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> deterministic build is as easy as running <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span></code> from your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project directory.</p>
+<p>To add additional dependencies to your project, you can either:</p>
+<ol class="arabic simple">
+<li><p>Edit your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> list of dependencies directly, adding application-specific dependencies under the <code class="docutils literal notranslate"><span class="pre">[packages]</span></code> section or development-specific dependencies under the <code class="docutils literal notranslate"><span class="pre">[dev-packages]</span></code> section of the <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>, then run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span></code> to install the dependencies and update the <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> build document.</p></li>
+<li><p>Or, more easily, you can run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">&lt;pip-package-name&gt;</span></code> to add and install a new application dependency, or <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span> <span class="pre">&lt;pip-package-name&gt;</span></code> to add and install a new development dependency. When you add a dependency in this manner, not only will the dependency be installed in your <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment, but <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will also automatically updated your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> and <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> to reflect the newly added dependency.</p></li>
+</ol>
+<p>There are many additional actions you can take to update and change dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code>.</p>
+<ul class="simple">
+<li><p>To learn more, please see the <a class="reference external" href="https://pipenv.pypa.io/en/latest/basics/">documentation on the basic usage of Pipenv</a>.</p></li>
+<li><p>If your preference is to manage dependencies using the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> argument, please take some time to <a class="reference external" href="https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy">read the distinctions between Pipfile vs. setup.py</a>, and think carefully about the distinctions between managing dependencies for a Python “application” such as that which you are creating with the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template versus a Python “library”, which the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template is not.</p></li>
+</ul>
+</div>
+<div class="section" id="installing-your-local-cc-pyscript-package-as-an-editable">
+<h4><a class="toc-backref" href="#in-this-section">Installing your local <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> package as an editable</a><a class="headerlink" href="#installing-your-local-cc-pyscript-package-as-an-editable" title="Permalink to this headline">¶</a></h4>
+<p>If you inspect the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template’s default <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>, you will see that <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will install your newly created local <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> package as an “editable” under the <code class="docutils literal notranslate"><span class="pre">[packages]</span></code> section of that <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>. More specifically, the line in the <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> that reads:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">editable</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>…is equivalent to running this from the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>…which is similar to running the following command in plain old <code class="docutils literal notranslate"><span class="pre">pip</span></code> if you were not working from a virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="managing-environment-variables-with-the-env-file">
+<span id="env"></span><h3><a class="toc-backref" href="#in-this-section">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a><a class="headerlink" href="#managing-environment-variables-with-the-env-file" title="Permalink to this headline">¶</a></h3>
+<p>When you generate a new <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project using this template, by default you will be provided with a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in which you can set environment variables specific to your project.</p>
+<ul class="simple">
+<li><p>This <code class="docutils literal notranslate"><span class="pre">.env</span></code> file can be used for setting secret keys, credentials, or filepaths you need for your project, but would like to keep secret.</p></li>
+<li><p>By default, the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> for this project is set to ignore the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p></li>
+<li><p>It is strongly, strongly, strongly suggested that you NEVER commit your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file to source control, or else you will have compromised any credentials saved to that file.</p></li>
+</ul>
+<p>Typically, to load and access the environment variables saved to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file you would need to use a tool such as <a class="reference external" href="https://saurabh-kumar.com/python-dotenv/">python-dotenv</a>.</p>
+<p>But alas, because we are using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage our <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project environment, <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> <strong>will automatically load your</strong> <code class="docutils literal notranslate"><span class="pre">.env</span></code> <strong>environment variables to your environment when you enter your</strong> <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code> <strong>or use</strong> <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">run</span></code>.</p>
+<p>For instance, if you have a secret key you wish to access programatically when running your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> package locally, you can add the following to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span><span class="o">=</span><span class="n">YOURSECRETKEY</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will seamlessly take care of loading this <code class="docutils literal notranslate"><span class="pre">.env</span></code>-stored enviroment variable in the background.</p>
+<p>Then, to access that secret key directly within your code, you simply need to access it using <code class="docutils literal notranslate"><span class="pre">os.getenv</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To learn more about this <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> behavior, please see the documentation on <a class="reference external" href="https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env">Pipenv loading of .env</a>.</p>
+</div>
+<div class="section" id="versioning-your-project-with-git-tags-and-setuptools-scm">
+<h3><a class="toc-backref" href="#in-this-section">Versioning your project with <code class="docutils literal notranslate"><span class="pre">git</span></code> tags and <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code></a><a class="headerlink" href="#versioning-your-project-with-git-tags-and-setuptools-scm" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template is configured to make use of <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a> to manage and track your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project’s current version.</p>
+<p>There are a number of different ways to maintain a Python project’s current version. For a survey of different approaches to maintain a “single source of truth” for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on <a class="reference external" href="https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version">Single-sourcing the package version</a>. <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> makes use of option #7 in that article.</p>
+<p>By using <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code>, your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> application pulls the version number directly from the latest <code class="docutils literal notranslate"><span class="pre">git</span></code> tag associated with your project.</p>
+<p>Therefore, instead of manually setting a global <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable in your application, you simply add a tag when you commit a new version of your application to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+<div class="section" id="implications-for-choosing-an-effective-git-branching-methodology">
+<h4><a class="toc-backref" href="#in-this-section">Implications for choosing an effective <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology</a><a class="headerlink" href="#implications-for-choosing-an-effective-git-branching-methodology" title="Permalink to this headline">¶</a></h4>
+<p>To use <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> effectively, you’ll likely want to use a proper/consistent <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology while building and maintaining your project.</p>
+<ul class="simple">
+<li><p>At a minimum, you should perform all of your development work on separate non-<code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">git</span></code> branches, and only when features are complete, “release” them by merging them into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
+<li><p>Therefore, each time you merge a set of your changes into <code class="docutils literal notranslate"><span class="pre">master</span></code>, that event should be considered a release.</p></li>
+<li><p>Thus, a release merged into <code class="docutils literal notranslate"><span class="pre">master</span></code> would require you tag it with a new version number.</p></li>
+</ul>
+<p>For instance, say you have a set of tested features on a <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch that are ready for release…</p>
+<p>You would first merge it into <code class="docutils literal notranslate"><span class="pre">master</span></code> (and consider using the <code class="docutils literal notranslate"><span class="pre">--no-ff</span></code> argument to prevent fast-forward merges, <a class="reference external" href="https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff">thus maintaining the context of your branches and the branching topology</a> of your <code class="docutils literal notranslate"><span class="pre">git</span></code> history):</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming your &#39;develop&#39; branch is your current active branch</span>
+git checkout master
+
+git merge --no-ff develop
+
+git tag -a v0.3.0 -m <span class="s2">&quot;Add a set of features that ...&quot;</span>
+</pre></div>
+</div>
+<p>As you can see in the steps above, once the set of new features are merged into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, you would then immediately add an “annotated” (designated by the <code class="docutils literal notranslate"><span class="pre">-a</span></code> argument) version tag, and comment it with a brief message describing the release.</p>
+<p>Now, if you were to check the version of your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>… <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> would provide you the following result:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>v0.3.0
+</pre></div>
+</div>
+<p>Then, once you have completed and tagged your merge into <code class="docutils literal notranslate"><span class="pre">master</span></code>, you would push your latest release changes (including the new tag) to your desired <code class="docutils literal notranslate"><span class="pre">remote</span></code> and switch back your “development” branch so you don’t accidentally make any additional changes to <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git push origin master
+git push origin v0.3.0
+git checkout develop
+git merge --no-ff master
+</pre></div>
+</div>
+<p>Now, because you are past your prior release, if you were to re-run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">--version</span></code>, you’d receive a result similar to this:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="m">0</span>.3.0.dev5+gefeb5a6.d20200620
+</pre></div>
+</div>
+<p>Voilà! You have released a new version of your project!</p>
+<p>To systematize your branching methodology in a manner similar to this, please take some time to:</p>
+<ul class="simple">
+<li><p>Consider using <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">the Git-flow methodology</a></p></li>
+<li><p>Or, at a minimum, <a class="reference external" href="https://guides.github.com/introduction/flow/">the simpler GitHub flow methodology</a>.</p></li>
+</ul>
+<p>While you’re at it, why not do yourself a favor and also add some some useful and consistent context to each of your commits by using the:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.conventionalcommits.org/">Conventional Commits specification for adding human and machine readable meaning to your commit messages</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme">
+<h4><a class="toc-backref" href="#in-this-section">Implications for using Semantic Versioning as a consistent version-numbering scheme</a><a class="headerlink" href="#implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme" title="Permalink to this headline">¶</a></h4>
+<p>According to the <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> documentation, <a class="reference external" href="https://github.com/pypa/setuptools_scm/#default-versioning-scheme">it is required to always include a “patch version” in your tagged version numbers</a>.</p>
+<p>That means:</p>
+<ul class="simple">
+<li><p>If you are releasing <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> as was demonstrated in the previous section,</p></li>
+<li><p>Then be certain to include the final “<code class="docutils literal notranslate"><span class="pre">0</span></code>”, which indicates the “patch version” of that release.</p></li>
+</ul>
+<p>In fact, while you’re at it, why not just consistently use Semantic Versioning (i.e. <a class="reference external" href="https://semver.org/">SemVer</a>) for every release you tag in <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://semver.org/">SemVer</a> is clean, easy to use, and it conveys important meaning about the underlying code in your package and what has been modified from one version to the next.</p></li>
+<li><p>An added benefit, <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> is expected to switch to SemVer as its default behavior in the future.</p></li>
+</ul>
+<p>At its core, SemVer uses the <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code> increment scheme for version numbering. As is specified in the <a class="reference external" href="https://semver.org/">SemVer</a> documentation:</p>
+<ol class="arabic simple">
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">MAJOR</span></code> version when you make incompatible API changes,</p></li>
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">MINOR</span></code> version when you add functionality in a backwards compatible manner, and</p></li>
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> version when you make backwards compatible bug fixes.</p></li>
+</ol>
+<p>Therefore, each version you release to <code class="docutils literal notranslate"><span class="pre">master</span></code> should always be tagged with three distinct period-separated digits, such as in the example:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git tag -a v0.3.0 -m <span class="s2">&quot;Add a set of features that ...&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="documenting-your-project-using-sphinx-and-github-pages">
+<h2><a class="toc-backref" href="#tutorial-contents">Documenting your project using Sphinx and GitHub Pages</a><a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id2">
+<p class="topic-title">In this section</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id14">Getting started with Sphinx and reStructuredText</a></p>
+<ul>
+<li><p><a class="reference internal" href="#generating-and-previewing-your-site-html" id="id15">Generating and previewing your site HTML</a></p></li>
+<li><p><a class="reference internal" href="#auto-generating-documentation-for-your-custom-package-modules" id="id16">Auto-generating documentation for your custom package modules</a></p></li>
+<li><p><a class="reference internal" href="#rationale-for-using-restructuredtext-instead-of-markdown" id="id17">Rationale for using reStructuredText instead of Markdown</a></p></li>
+<li><p><a class="reference internal" href="#rationale-for-using-sphinx-instead-of-jekyll-pelican-or-some-other-static-site-generator" id="id18">Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-logo-to-your-sphinx-site" id="id19">Adding a logo to your Sphinx site</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-favicon-to-your-sphinx-site" id="id20">Adding a favicon to your Sphinx site</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id21">Hosting your project documentation using GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#accessing-your-new-site-on-github-pages" id="id22">Accessing your new site on GitHub Pages</a></p></li>
+</ul>
+</div>
+<div class="section" id="getting-started-with-sphinx-and-restructuredtext">
+<h3><a class="toc-backref" href="#id2">Getting started with Sphinx and reStructuredText</a><a class="headerlink" href="#getting-started-with-sphinx-and-restructuredtext" title="Permalink to this headline">¶</a></h3>
+<p>The resulting project template is configured to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a> and <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> to generate and maintain your project documentation. By defult, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> has been added as a <code class="docutils literal notranslate"><span class="pre">dev-packages</span></code> requirement to <a class="reference external" href="https://github.com/sedelmeyer/cc-pyscript/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile">the template’s base Pipfile</a>. Therefore, when you run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span></code> for the first time for your new project (see <a class="reference internal" href="readme.html#install-pipenv"><span class="std std-ref">4. Install your new pipenv environment from the Pipfile</span></a>), <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> will be installed to your <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> virtual environment by default.</p>
+<ul class="simple">
+<li><p><strong>If you are new to Sphinx</strong>, please see <a class="reference external" href="https://www.sphinx-doc.org">the Sphinx documentation</a></p></li>
+<li><p><strong>If you are new to reStructuredText</strong>, a good starting place will be <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">the reStructuredText documentation provided by the Sphinx project</a></p></li>
+</ul>
+<div class="section" id="generating-and-previewing-your-site-html">
+<span id="make-html"></span><h4><a class="toc-backref" href="#id2">Generating and previewing your site HTML</a><a class="headerlink" href="#generating-and-previewing-your-site-html" title="Permalink to this headline">¶</a></h4>
+<p>Sphinx provides a convenient <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for performing basic site-building tasks. Generating (and re-generating) your Sphinx site’s HTML is as easy as following the next two steps:</p>
+<ol class="arabic">
+<li><p>Navigate to your project’s <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">make</span></code> command for building your HTML:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If your reStructuredText contains any errors, Sphinx will tell you as it builds your HTML.</p>
+<p>Your generated HTML, CSS, and related site files will now be located in the project’s <code class="docutils literal notranslate"><span class="pre">docs/_build/html/</span></code> directory.</p>
+<p>At any time you can preview your generated site content by opening your site’s <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file and navigating throughout your generated site files.</p>
+<ul>
+<li><p>If you are using Ubuntu, you can open your site content with your default web-browser by using this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xdg</span><span class="o">-</span><span class="nb">open</span> <span class="n">docs</span><span class="o">/</span><span class="n">_built</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you are using a different operating system, use the appropriate command or simply open the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> with your system’s GUI.</p></li>
+</ul>
+<p><strong>It is recommended that you DO NOT</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> <strong>those generated site files to your</strong> <code class="docutils literal notranslate"><span class="pre">master</span></code> <strong>branch.</strong> It is poor practice (and an inefficient use of git history storage) to commit your site source files and generate site HTML content to the same git branch. Instead, please refer to the section <a class="reference internal" href="#gh-pages"><span class="std std-ref">Hosting your project documentation using GitHub Pages</span></a>. That section outlines a recommended workflow for managing and commiting your generated site content using <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.</p>
+</div>
+<div class="section" id="auto-generating-documentation-for-your-custom-package-modules">
+<span id="make-docs"></span><h4><a class="toc-backref" href="#id2">Auto-generating documentation for your custom package modules</a><a class="headerlink" href="#auto-generating-documentation-for-your-custom-package-modules" title="Permalink to this headline">¶</a></h4>
+<p>Sphinx is a powerful tool for auto-generating API documentation directly from the docstrings embedded within your code. In other words, if you take the time to document your code correctly using docstrings, your API reference material can largely write itself.</p>
+<p>There are several approaches you can take to accomplish this. Options include:</p>
+<ol class="arabic simple">
+<li><p>Manual configuration of API reference materials using the <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">autodoc Sphinx extension</a>;</p></li>
+<li><p>Manual configuration of API reference materials using the <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html">autsummary Sphinx extension</a>;</p></li>
+<li><p>Fully automated generation of API reference materials using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html">command line utility, which relies on the autodoc extension</a>;</p></li>
+<li><p>Automatic generation of API reference materials by setting the <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> extension’s <code class="docutils literal notranslate"><span class="pre">autosummary_generate</span> <span class="pre">=</span> <span class="pre">True</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#confval-autosummary_generate">parameter in your Sphinx</a> <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file;</p></li>
+<li><p>…a combination of any of the approaches listed above.</p></li>
+</ol>
+<p>Each approach listed above has its own pros and cons which are far too detailed to explore here. For a great comparison of using the <code class="docutils literal notranslate"><span class="pre">automodule</span></code> versus the <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> extension, <a class="reference external" href="https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-ii-6/">please see this article by Roman Miroshnychenko</a>. Otherwise, please refer to the <code class="docutils literal notranslate"><span class="pre">autodoc</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code>, <code class="docutils literal notranslate"><span class="pre">autosummary</span></code>, and <code class="docutils literal notranslate"><span class="pre">autosummary_generate</span></code> links provided in the list above.</p>
+<p>I am sure approaches other than those listed above exist as well, but you should be able to accomplish everything you need to accomplish using these tools, so I will save myself the time it would take to provide a more exhaustive list.</p>
+<p><strong>If you have questions about the proper syntax for writing  Sphinx-friendly reStructuredText docstrings in your Python code</strong>, please see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-i-5/">Roman Miroshnychenko’s article on autodocumenting your python code</a></p></li>
+<li><p><a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html">Thomas Cokelaer’s example on how to document your Python docstrings</a></p></li>
+</ul>
+<p>You may also find Sphinx’s <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain">documentation on its Python Domain directives</a> to be extremely useful while trying to embed references within your docstrings.</p>
+<p>Sphinx can also generate documentation from the Google- and Numpy-formatted docstring styles with the help of the <code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> Sphinx extension. If either of those docstring formats are your jam, please <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">see the napoleon documentation</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The first time you run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> as was described in <a class="reference internal" href="#make-html"><span class="std std-ref">Generating and previewing your site HTML</span></a>, the <code class="docutils literal notranslate"><span class="pre">docs/modules.rst</span></code> file contained in the default <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template will generate a starter “API Reference” page documenting all modules and functions already contained in the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template. That initial <code class="docutils literal notranslate"><span class="pre">modules.rst</span></code> file makes use of the manual approach #1 listed above and uses the <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> extension’s <code class="docutils literal notranslate"><span class="pre">automodule</span></code> <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automodule">directive</a> to generate that starter documentation.</p></li>
+<li><p>All Sphinx extensions listed above, including <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code>, and <code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> are imported by default in the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> Sphinx configuration file.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="rationale-for-using-restructuredtext-instead-of-markdown">
+<h4><a class="toc-backref" href="#id2">Rationale for using reStructuredText instead of Markdown</a><a class="headerlink" href="#rationale-for-using-restructuredtext-instead-of-markdown" title="Permalink to this headline">¶</a></h4>
+<p>GitHub, Jupyter notebooks, and other static site generators typically rely on Markdown as a lightweight markup language.</p>
+<p>QUESTION:</p>
+<ul class="simple">
+<li><p>So then, why does the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project template use reStructuredText instead of Markdown?</p></li>
+<li><p>Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown.</p></li>
+</ul>
+<p>ANSWER:</p>
+<ul class="simple">
+<li><p>Because benefits abound, particularly for technical writing (once you get past the initial learning curve).</p></li>
+<li><p>And, because the primary assumption is that you’ll be writing technical content to document and support your Python-based <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project, reStructuredText is the better choice.</p></li>
+</ul>
+<p>Here are a few primary reasons worth highlighting:</p>
+<ul class="simple">
+<li><p>reStructuredText supports semantic meaning in a manner not supported by Markdown,</p></li>
+<li><p>reStructuredText is extensible and standardized while any Markdown implementation that is feature-rich enough to even begin supporting moderate-to-heavy technical writing needs will come in many flavors which are not always portable between different platforms without tedious modification,</p></li>
+<li><p>reStructuredText is a stable “go-to”, has been around for a while, and has been used heavily in the Python community since 2002,</p></li>
+<li><p>reStructuredText is the default markup language for Sphinx (see more about why we are using Sphinx in the section below) and integrates well with <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html">Sphinx’s more powerful directives</a></p></li>
+</ul>
+</div>
+<div class="section" id="rationale-for-using-sphinx-instead-of-jekyll-pelican-or-some-other-static-site-generator">
+<h4><a class="toc-backref" href="#id2">Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator</a><a class="headerlink" href="#rationale-for-using-sphinx-instead-of-jekyll-pelican-or-some-other-static-site-generator" title="Permalink to this headline">¶</a></h4>
+<p>GitHub Pages strongly favors GitHub’s homegrown static site generator <a class="reference external" href="https://jekyllrb.com/">Jekyll</a> and it’s hella simple to use for some basic web publishing needs.</p>
+<ul class="simple">
+<li><p>Unfortunately, Jekyll is a Ruby-based tool.</p></li>
+<li><p>That means, if you use Jekyll, you’ll need to run both a Ruby environment and Python environment to publish your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> documentation.</p></li>
+</ul>
+<p>Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx)!</p>
+<ul class="simple">
+<li><p>The second major drawback for Jekyll is, it’s not a tool custom-suited for documenting code.</p></li>
+<li><p>This drawback also applies to the Python-based <a class="reference external" href="https://docs.getpelican.com/">Pelican</a> site generator and many other static site generators.</p></li>
+<li><p>They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library.</p></li>
+<li><p>Sphinx, on the otherhand, excels at this task!</p></li>
+</ul>
+<p>As was illustrated above (see <a class="reference internal" href="#make-docs"><span class="std std-ref">Auto-generating documentation for your custom package modules</span></a>), Sphinx offers powerful built-in extensions such as <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">sphinx.ext.autodoc</a> for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.</p>
+<p>Information about other popular “built-in” Sphinx extensions that help to make Sphinx a smart choice for technical documentation <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/index.html">can be found in the “Extensions” section of the Sphinx documentation</a>.</p>
+</div>
+<div class="section" id="adding-a-logo-to-your-sphinx-site">
+<h4><a class="toc-backref" href="#id2">Adding a logo to your Sphinx site</a><a class="headerlink" href="#adding-a-logo-to-your-sphinx-site" title="Permalink to this headline">¶</a></h4>
+<p>The default theme used for the Sphinx docs in the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template is called <a class="reference external" href="https://alabaster.readthedocs.io/en/latest/">Alabaster</a>. It’s clean, responsive, and configurable. Did I mention it was clean?</p>
+<p>The Alabaster theme provides a simple option for adding a site logo to the top of the lefthand navbar. A reasonable width for that logo image is 200 pixels. To add a logo to your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project documentation, simply:</p>
+<ol class="arabic simple">
+<li><p>Save your 200-pixel-width image file (e.g. as .jpg or .png file) to the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory, and name it <code class="docutils literal notranslate"><span class="pre">docs/logo.png</span></code> (with the appropriate file extension of course).</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code> file and uncomment the <code class="docutils literal notranslate"><span class="pre">logo</span></code> setting in the <code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code> dictionary.</p></li>
+<li><p>Then <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> and your new logo image should appear in the generated site HTML.</p></li>
+</ol>
+</div>
+<div class="section" id="adding-a-favicon-to-your-sphinx-site">
+<h4><a class="toc-backref" href="#id2">Adding a favicon to your Sphinx site</a><a class="headerlink" href="#adding-a-favicon-to-your-sphinx-site" title="Permalink to this headline">¶</a></h4>
+<p>Similar to the site logo, if you wish to add a favicon image to your Alabaster-themed Sphinx site:</p>
+<ol class="arabic simple">
+<li><p>Generate your <code class="docutils literal notranslate"><span class="pre">favicon.ico</span></code> image at 16x16 pixels, or 32x32, or whatever size makes the most sense given current browser standards and backwards compatibility concerns (truthfully, I couldn’t care less and would just choose a size that works for your browser of choice).</p></li>
+<li><p>Save it as <code class="docutils literal notranslate"><span class="pre">docs/favicon.ico</span></code>.</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code> file and uncomment the <code class="docutils literal notranslate"><span class="pre">html_favicon</span> <span class="pre">=</span> <span class="pre">'_static/favicon.ico'</span></code> line and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> again.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="hosting-your-project-documentation-using-github-pages">
+<span id="gh-pages"></span><h3><a class="toc-backref" href="#id2">Hosting your project documentation using GitHub Pages</a><a class="headerlink" href="#hosting-your-project-documentation-using-github-pages" title="Permalink to this headline">¶</a></h3>
+<p>Outlined here is the basic Git workflow for hosting your Sphinx-generated project documentation on <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>. There are several different methods for configuring GitHub to host your project documentation. The one we will use here is to use a separate <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> Git branch for just your Sphinx-generate site content.</p>
+<p>While GitHub can be configured to use the base directory of your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch or the <code class="docutils literal notranslate"><span class="pre">./docs</span></code> directory of your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, using a separate <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch for your site content has the added benefit of keeping your source content separate from your Sphinx-generated build content. This will help to keep your master branch git history storage from ballooning with built site content, particularly when that content can be rebuilt at any time using your historical Git commits.</p>
+<p>The basic steps for publishing your GitHub pages content are as follows:</p>
+<ul>
+<li><p>After running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to generate your site content, you need to first create an orphaned <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. Note that this only needs to be done the first time you create this branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span><span class="n">orphan</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+</pre></div>
+</div>
+</li>
+<li><p>By default, all existing files not excluded by your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> will be staged in your new branch. You will need to remove them all from staging with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rm</span> <span class="o">--</span><span class="n">cached</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once they’re removed from staging and no longer tracked by Git, you can delete them from the gh-pages branch all together. (Don’t worry, they will still exist on your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="nb">id</span>
+</pre></div>
+</div>
+</li>
+<li><p>You will then receive a prompt asking you what you want to do. The command you want to specify is <code class="docutils literal notranslate"><span class="pre">c</span></code> (clean). By cleaning your repo, your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch will be left containing only your <code class="docutils literal notranslate"><span class="pre">.git/</span></code> directory, as well as any other files previously ignored by Git as specified by your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file (including your <code class="docutils literal notranslate"><span class="pre">docs/_build/html/</span></code> site content).</p></li>
+<li><p>Now, to be certain we don’t delete or commit any of the other files you had ignored by Git on your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch (because these will vanish from your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch too if you accidentally delete them), you want to checkout your master version of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span> <span class="o">--</span> <span class="o">.</span><span class="n">gitignore</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you will see that this command has placed your master .gitignore in your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> staging area, and you will see that Git has gone back to ignoring the other files you’d like ignored. Commit it as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;git: add .gitignore from master&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Now you want to place all of your Sphinx-generated site content into your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> base directory for rendering by GitHub Pages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">docs</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/*</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next, add a blank <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file to your directory to tell GitHub that you are not using Jekyll (the default site generator for GitHub Pages) to generate your site:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">.</span><span class="n">nojekyll</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you check <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, you will see that your site content is now visible to git because we have taken it out of the previously ignored <code class="docutils literal notranslate"><span class="pre">docs/_build/</span></code> directory.</p></li>
+<li><p>Add your site content files to your staging area and commit them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;docs: add &lt;current release version&gt; site content&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then, push the changes to GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once committed and pushed, you can return to any of your other branches to continue work on your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next time you want to return to your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch to load your latest Sphinx-generated site content to GitHub Pages, you can just checkout that branch and follow the above outlined process again starting with the step of copying over your latest .gitignore in case you’ve made any edits to it on <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span> <span class="o">--</span> <span class="o">.</span><span class="n">gitignore</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="accessing-your-new-site-on-github-pages">
+<h3><a class="toc-backref" href="#id2">Accessing your new site on GitHub Pages</a><a class="headerlink" href="#accessing-your-new-site-on-github-pages" title="Permalink to this headline">¶</a></h3>
+<p>Once you have pushed the first version of your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch to GitHub, GitHub will automatically generate a new site. To view this site, go to your project repo on GitHub, go to Settings, and scroll down until you see the GitHub Pages section of your settings.</p>
+<p>There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.</p>
+</div>
+</div>
+<div class="section" id="test-configuration-and-continuous-integration-with-github-actions">
+<h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with GitHub Actions</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-github-actions" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id3">
+<p class="topic-title">In this section</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-test-runner" id="id23">Unit-testing your project and using the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a></p>
+<ul>
+<li><p><a class="reference internal" href="#location-of-cc-pyscript-unit-tests" id="id24">Location of <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> unit tests</a></p></li>
+<li><p><a class="reference internal" href="#pytest-test-runner" id="id25"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a></p></li>
+<li><p><a class="reference internal" href="#running-unit-tests-using-pytest" id="id26">Running unit tests using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#test-matrix-automation-using-tox" id="id27">Test matrix automation using <code class="docutils literal notranslate"><span class="pre">tox</span></code></a></p></li>
+<li><p><a class="reference internal" href="#configuring-github-actions-for-your-project" id="id28">Configuring GitHub Actions for your project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-default-ci-test-matrix-yml-configuration-file" id="id29">The default <code class="docutils literal notranslate"><span class="pre">ci-test-matrix.yml</span></code> configuration file</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="unit-testing-your-project-and-using-the-pytest-test-runner">
+<h3><a class="toc-backref" href="#id3">Unit-testing your project and using the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a><a class="headerlink" href="#unit-testing-your-project-and-using-the-pytest-test-runner" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="location-of-cc-pyscript-unit-tests">
+<h4><a class="toc-backref" href="#id3">Location of <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> unit tests</a><a class="headerlink" href="#location-of-cc-pyscript-unit-tests" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template, by default, provides a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory at the same level as the <code class="docutils literal notranslate"><span class="pre">src/</span></code> directory.</p>
+<ul class="simple">
+<li><p>Opinions and rationale about where to store Python unit tests vary.</p></li>
+<li><p>Some people prefer storing unit tests directly within their modules, some under <code class="docutils literal notranslate"><span class="pre">src/</span></code>, but outside their actual modules, and others in the manner we have done here for <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code>.</p></li>
+<li><p>Sometimes circumstances and/or preferences warrant using one location over another.</p></li>
+<li><p>To keep things simple, and to make it easy to locate tests in your project, the current <code class="docutils literal notranslate"><span class="pre">tests/</span></code> location has been chosen for the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template.</p></li>
+<li><p>However, you should feel free to relocate your unit tests to a different location if it makes sense for you or your project.</p></li>
+</ul>
+</div>
+<div class="section" id="pytest-test-runner">
+<h4><a class="toc-backref" href="#id3"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a><a class="headerlink" href="#pytest-test-runner" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> are installed as default <code class="docutils literal notranslate"><span class="pre">dev-packages</span></code> in the base <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> included with the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project template.</p></li>
+<li><p><a class="reference external" href="http://pytest.org/">Pytest</a> makes for a simple yet powerful test-runner for test discovery, reporting, and simple diagnostics; and <a class="reference external" href="https://pytest-cov.readthedocs.io/en/latest/readme.html">pytest-cov</a> produces coverage reports.</p></li>
+</ul>
+</div>
+<div class="section" id="running-unit-tests-using-pytest">
+<h4><a class="toc-backref" href="#id3">Running unit tests using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a><a class="headerlink" href="#running-unit-tests-using-pytest" title="Permalink to this headline">¶</a></h4>
+<p>At any time during development of your <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project, you can run your entire suite of unit tests. The two easiest methods for doing this are:</p>
+<ol class="arabic">
+<li><p>If you aren’t currently in your project’s <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">run</span> <span class="n">pytest</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you are currently in your <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code>, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span>
+
+<span class="c1"># or even more simply just the single word command...</span>
+
+<span class="n">pytest</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner is a powerful command-line tool. There are far too many features to describe here. For a good overview:</p>
+<ul class="simple">
+<li><p>Please see <a class="reference external" href="https://docs.pytest.org/en/latest/usage.html">the documentation regarding the Usage and Invocations</a> of <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pytest</span></code>;</p></li>
+<li><p>Additionally, you can see the complete listing of available <code class="docutils literal notranslate"><span class="pre">pytest</span></code> arguments in the “help” documentation by running <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-h</span></code>.</p></li>
+</ul>
+<p>Running <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will provide a convenient summary as tests are run. As an example, your default <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> test output will look something like this if there are no test failures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=========================</span>
+<span class="n">platform</span> <span class="n">linux</span>  <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.2</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.10</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">cachedir</span><span class="p">:</span> <span class="o">.</span><span class="n">tox</span><span class="o">/</span><span class="n">py37</span><span class="o">/.</span><span class="n">pytest_cache</span>
+<span class="n">rootdir</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">repo_name</span><span class="p">,</span> <span class="n">configfile</span><span class="p">:</span> <span class="n">setup</span><span class="o">.</span><span class="n">cfg</span><span class="p">,</span> <span class="n">testpaths</span><span class="p">:</span> <span class="n">tests</span>
+<span class="n">plugins</span><span class="p">:</span> <span class="n">cov</span><span class="o">-</span><span class="mf">2.10</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">collected</span> <span class="mi">7</span> <span class="n">items</span>
+
+<span class="n">tests</span><span class="o">/</span><span class="n">test_script_name</span><span class="o">.</span><span class="n">py</span> <span class="o">.......</span>                             <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">----------</span> <span class="n">coverage</span><span class="p">:</span> <span class="n">platform</span> <span class="n">linux</span><span class="p">,</span> <span class="n">python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">9</span><span class="o">-</span><span class="n">final</span><span class="o">-</span><span class="mi">0</span> <span class="o">----------</span>
+<span class="n">Name</span>                                 <span class="n">Stmts</span>  <span class="n">Miss</span> <span class="n">Branch</span> <span class="n">BrPart</span> <span class="n">Cover</span>
+<span class="o">--------------------------------------------------------------------</span>
+<span class="n">src</span><span class="o">/</span><span class="n">package_name</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>           <span class="mi">6</span>      <span class="mi">2</span>      <span class="mi">0</span>      <span class="mi">0</span>    <span class="mi">67</span><span class="o">%</span>
+<span class="n">src</span><span class="o">/</span><span class="n">package_name</span><span class="o">/</span><span class="n">script_name</span><span class="o">.</span><span class="n">py</span>       <span class="mi">29</span>      <span class="mi">2</span>      <span class="mi">8</span>      <span class="mi">1</span>    <span class="mi">92</span><span class="o">%</span>
+<span class="o">--------------------------------------------------------------------</span>
+<span class="n">TOTAL</span>                                 <span class="mi">35</span>      <span class="mi">4</span>      <span class="mi">8</span>      <span class="mi">1</span>    <span class="mi">88</span><span class="o">%</span>
+
+<span class="o">======================</span> <span class="mi">7</span> <span class="n">passed</span> <span class="ow">in</span> <span class="mf">0.38</span><span class="n">s</span> <span class="o">===========================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-matrix-automation-using-tox">
+<h3><a class="toc-backref" href="#id3">Test matrix automation using <code class="docutils literal notranslate"><span class="pre">tox</span></code></a><a class="headerlink" href="#test-matrix-automation-using-tox" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template includes the options to render the resulting template with <code class="docutils literal notranslate"><span class="pre">tox</span></code> automated testing.</p>
+<p>If you are not familiar with Python’s test automation tool <a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox</a>, learning to use it is well worth the investment in time.</p>
+<p>If you review the <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> configuration file contained in the template directory, you will see that <code class="docutils literal notranslate"><span class="pre">tox</span></code> automation for this project is configured to:</p>
+<ol class="arabic simple">
+<li><p>Run the template’s unit tests on several different versions of Python to ensure compatibility with each of those versions,</p></li>
+<li><p>Run a test build of the project template’s default Sphinx documentation to ensure docs build successfully, and…</p></li>
+<li><p>Run a <code class="docutils literal notranslate"><span class="pre">flake8</span></code> linting test to ensure all of the Python syntax in the template meets <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> standards.</p></li>
+</ol>
+<p>To run these automated <code class="docutils literal notranslate"><span class="pre">tox</span></code> tests, you simply run the <code class="docutils literal notranslate"><span class="pre">tox</span></code> command from within your active <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> development environment.</p>
+<p>Alternatively, you can run individual <code class="docutils literal notranslate"><span class="pre">tox</span></code> environments (instead of all at once) by explcitly specifying the environment you wish to run, such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<p>If you select <code class="docutils literal notranslate"><span class="pre">&quot;no&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">tox</span></code> choice variable prompt during the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template rendering process, there will be no <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file contained in the final rendered template and <code class="docutils literal notranslate"><span class="pre">tox</span></code> will not be included in the <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> <code class="docutils literal notranslate"><span class="pre">dev-packages</span></code> requirements.</p>
+</div>
+<div class="section" id="configuring-github-actions-for-your-project">
+<h3><a class="toc-backref" href="#id3">Configuring GitHub Actions for your project</a><a class="headerlink" href="#configuring-github-actions-for-your-project" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project template offers the option to configure the rendered template to use <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> services for continuous integration testing.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci-test-matrix.yml</span></code> file provided in the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> project template is used to configure your <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> build.</p></li>
+<li><p>For a tutorial on how to use GitHub Actions, please <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions">see the official GitHub Actions tutorial</a>.</p></li>
+</ul>
+<p>If you select <code class="docutils literal notranslate"><span class="pre">&quot;no&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">gh_actions</span></code> choice variable prompt during the <code class="docutils literal notranslate"><span class="pre">cc-pyscript</span></code> template rendering process, there will be neither a <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory added to the finished template, nor will there be a GitHub Actions build-badge included in the rendered template’s default documentation.</p>
+<div class="section" id="the-default-ci-test-matrix-yml-configuration-file">
+<h4><a class="toc-backref" href="#id3">The default <code class="docutils literal notranslate"><span class="pre">ci-test-matrix.yml</span></code> configuration file</a><a class="headerlink" href="#the-default-ci-test-matrix-yml-configuration-file" title="Permalink to this headline">¶</a></h4>
+<p>The configuration of the default <code class="docutils literal notranslate"><span class="pre">ci-test-matrix.yml</span></code> file will trigger a GitHub Actions build every time you push to either the <code class="docutils literal notranslate"><span class="pre">develop</span></code> or <code class="docutils literal notranslate"><span class="pre">master</span></code> remote branch on GitHub. That build will run all of the default <code class="docutils literal notranslate"><span class="pre">tox</span></code> environment tests specified in the template’s <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file.</p>
+<p>The build badge provided at the top of the template’s <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file reflects the latest build results for the project’s <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+<p>To modify the branches on which your GitHub Actions are built, or to change the specific Python versions or operating systems used in your test matrix, you will want to change the initial parameters set in the <code class="docutils literal notranslate"><span class="pre">ci-test-matrix.yml</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="n">on</span><span class="p">:</span>
+  <span class="n">push</span><span class="p">:</span>
+    <span class="n">branches</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">master</span>
+        <span class="o">-</span> <span class="n">develop</span>
+  <span class="n">pull_request</span><span class="p">:</span>
+    <span class="n">branches</span><span class="p">:</span> <span class="p">[</span> <span class="n">master</span> <span class="p">]</span>
+
+<span class="n">jobs</span><span class="p">:</span>
+  <span class="n">build</span><span class="p">:</span>
+
+    <span class="n">strategy</span><span class="p">:</span>
+      <span class="n">matrix</span><span class="p">:</span>
+        <span class="n">python</span><span class="o">-</span><span class="n">version</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.6</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">]</span>
+        <span class="n">os</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ubuntu-latest&quot;</span><span class="p">]</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>However, please note that other changes may need to be made to your template in order for tests to pass on other operating systems.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="readme.html" title="Previous document">Cookiecutter PyScript</a>
+        </li>
+        <li>
+          <a href="about.html" title="Next document">About this project</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">Cookiecutter PyScript (i.e. cc-pyscript) is a template for generating "reasonably standardized" skeletons for fully-tested Python-based scripting projects.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=sedelmeyer&repo=cc-pyscript&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Cookiecutter PyScript</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#packaging-characteristics-of-this-template">Packaging characteristics of this template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages">Documenting your project using Sphinx and GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-configuration-and-continuous-integration-with-github-actions">Test configuration and continuous integration with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.sedelmeyer.net/">Find me online at sedelmeyer.net</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/sedelmeyer">GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://www.linkedin.com/in/sedelmeyer/">LinkedIn</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="readme.html" title="previous chapter">Cookiecutter PyScript</a></li>
+      <li>Next: <a href="about.html" title="next chapter">About this project</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Michael Sedelmeyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/sedelmeyer/cc-pyscript" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
