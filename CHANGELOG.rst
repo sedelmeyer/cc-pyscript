@@ -10,6 +10,12 @@ v0.2.0 (Future Release)
 * Add basic logger functionality to script template
 * Add pre-/post-release checklist section to ``docs/about.rst``
 
+v0.1.1 (2021-01-01)
+-------------------
+
+* Add URL for full documentation to ``README.rst``
+
+
 v0.1.0 (2021-01-01)
 -------------------
 
