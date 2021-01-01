@@ -32,7 +32,6 @@ template_files = [
     '.gitignore',
     'CHANGELOG.rst',
     'LICENSE',
-    'logging.json',
     'Pipfile',
     'README.rst',
     'setup.cfg',
