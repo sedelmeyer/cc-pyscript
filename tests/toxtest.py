@@ -2,10 +2,10 @@
 tests.toxtest
 ~~~~~~~~~~~~~
 
-This module contains tests to ensure the ``cc-pydata`` template's ``tox`` tests
+This module contains tests to ensure the ``cc-pyscript`` template's ``tox`` tests
 run without error.
 
-This is accomplished by rendering the ``cc-pydata`` template to a temporary
+This is accomplished by rendering the ``cc-pyscript`` template to a temporary
 directory, then running that template's default ``tox`` configuration to
 ensure all ``tox`` environment tests pass without error.
 
@@ -43,7 +43,7 @@ class TestTemplateToxConfig(TestCase):
     """Test that the rendered template's default ``tox`` configuration runs"""
 
     def setUp(self):
-        """Render the ``cc-pydata`` template in a temporary directory"""
+        """Render the ``cc-pyscript`` template in a temporary directory"""
         with contextlib.ExitStack() as stack:
             # open temp directory context manager
             self.tmpdir = tmpdir = stack.enter_context(

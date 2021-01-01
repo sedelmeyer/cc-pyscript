@@ -32,7 +32,6 @@ template_files = [
     '.gitignore',
     'CHANGELOG.rst',
     'LICENSE',
-    'logging.json',
     'Pipfile',
     'README.rst',
     'setup.cfg',
@@ -58,10 +57,10 @@ files_with_brackets_list = ["ci-test-matrix.yml"]
 
 
 class TestBuildDefaultTemplate(TestCase):
-    """Test default ``cc-pydata`` cookiecutter template build"""
+    """Test default ``cc-pyscript`` cookiecutter template build"""
 
     def setUp(self):
-        """Render default ``cc-pydata`` template in temporary directory"""
+        """Render default ``cc-pyscript`` template in temporary directory"""
         with contextlib.ExitStack() as stack:
             # open temp directory context manager
             self.tmpdir = tmpdir = stack.enter_context(
