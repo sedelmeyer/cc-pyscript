@@ -146,13 +146,12 @@ Documentation using Sphinx and reStructuredText
 
      * Delete this section of ``README.rst``
      * Delete the ``docs/`` directory
-     * Delete the ``docs`` test environment from ``tox.ini``{% if cookiecutter.gh_actions == 'yes' %}and ``.github/workflows/ci-test-matrix.yml``{% endif %}.
+     * Delete the ``docs`` test environment from ``tox.ini``{% if cookiecutter.gh_actions == 'yes' %} and ``.github/workflows/ci-test-matrix.yml``{% endif %}.
 
 
-This project is configured to use reStructuredText_ and Sphinx_ to generate and maintain project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to this project's Pipfile. Therefore, when you run ``pipenv install --dev`` for the first time for your new project ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
+This project is configured to use reStructuredText and Sphinx to generate and maintain project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to this project's Pipfile. Therefore, when you run ``pipenv install --dev`` for the first time for your new project ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
 
-* **For an overview of usage, or for more info on the benefits of Sphinx and reStructuredText**, please see `this section of this brief overview of using Sphinx to document a project <https://sedelmeyer.github.io/cc-pydata/tutorial.html#documenting-your-project-using-sphinx-and-github-pages
->`_
+* **For an overview of usage, or for more info on the benefits of Sphinx and reStructuredText**, please see `this section of this brief overview of using Sphinx to document a project <https://sedelmeyer.github.io/cc-pydata/tutorial.html#documenting-your-project-using-sphinx-and-github-pages>`_
 * **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
 * **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 
