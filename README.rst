@@ -31,6 +31,7 @@ This Cookiecutter_ template allows for the creation of a fully tested Python scr
   
 * Conventions and best practices implemented using this template create a sense of consistency, making it easier for yourself and others to interpret and extend your code for any new project.
 
+**To review a sample repository rendered using this** ``cc-pyscript`` **Cookiecutter template, please see:** https://github.com/sedelmeyer/cc-pyscript-sample-repo
 
 ``cc-pyscript`` directory structure
 -----------------------------------
