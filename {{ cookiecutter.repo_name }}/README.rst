@@ -24,7 +24,7 @@ The ``{{ cookiecutter.script_name }}.py`` script itself can be found in the ``sr
 
 Please note that this script can also be run from this project's ``{{ cookiecutter.package_name }}`` package
 
-Command Line Usage
+Command line usage
 ------------------
 
 To invoke this Python script, simply run ``python {{ cookiecutter.script_name }}.py``.
@@ -39,14 +39,54 @@ Running the script's ``--help`` command with ``python {{ cookiecutter.script_nam
 
    * Add stdout usage instructions to the code block above.
 
+
+Getting started
+---------------
+
+.. _requirements:
+
 0. Ensure system requirements are met
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The requirements for executing this script are:
+
+* Python>=3.7
+
+  * Python=3.6 will also likely work, but has not been tested.
+  
+  * Only the Python Standard Library is required.
+
+Additional requirements for developing and testing this script, or installing the ``tech_grant`` package locally for running the CLI ``download-files`` entry-point directly are:
+
+* ``pipenv``
+  
+  * ``pipenv, version 2020.8.13`` was used for developing this script, however older versions of ``pipenv`` will likely work.
+  
+  * If you prefer NOT to use ``pipenv`` for packaging and virtual environment management in favor of an alternative such as ``conda`` or ``virtualenv``, you will need to modify the project repository and ``.tox`` test matrix accordingly.
 
 1. Clone this repository locally
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The ``src/{{ cookiecutter.package_name }}/{{ cookiecutter.script_name }}.py`` script can be used as a standalone document, therefore, the rest of the files included in this project repository are not technically required for its use. However, for development and testing of this script, it is recommended that the entire project repository be cloned locally from GitHub. This repository can be cloned with the following command::
+
+  git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}.git
+
 2. Install the required environment using Pipenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are new to using Pipenv for managing your working environments, please take some time to familiarize yourself with the tool. The `official Pipenv documentation <https://pipenv.pypa.io/en/latest/>`_ is a good place to start.
+
+To install your Python dependencies directly from the deterministic build specified by the ``Pipfile.lock``, simply run::
+
+  pipenv install --dev
+
+Once your ``pipenv`` environment is built, you can enter it with::
+
+  pipenv shell
+
+As noted above in the requirements section, Pipenv is used to manage development requirements for this project. Pipenv is not necessarily required for just executing the script, because the script requires only the Python Standard Library to execute successfully.
+
+**Troubleshooting:** It is possible that the frozen requirements specified in the ``Pipfile.lock`` may cause errors on some operating systems due to varying system-specific requirements needed to install ``pytest`` and some other development requirements. If you encounter this error, you may wish to delete your local version of the ``Pipfile.lock`` file and re-run ``pipenv install --dev``.
 
 
 .. _development:
