@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 {{ cookiecutter.package_name }}.{{ cookiecutter.script_name }}
-{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}"~"{% for _ in cookiecutter.script_name %}{{"~"}}{% endfor %}
+{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}~{% for _ in cookiecutter.script_name %}{{"~"}}{% endfor %}
 
 Add verbose script description.
 
