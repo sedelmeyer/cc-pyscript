@@ -9,9 +9,9 @@ Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generati
 .. image:: https://img.shields.io/badge/License-MIT-black.svg
     :target: https://github.com/sedelmeyer/cc-pyscript/blob/master/LICENSE
 
-|
 
 * **GitHub repo:** https://github.com/sedelmeyer/cc-pyscript
+
 
 .. contents:: Contents
   :local:
