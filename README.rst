@@ -336,7 +336,43 @@ For a more complete overview of how to use ``pipenv`` for package and dependenci
 
 **Congratulations!** You've stood up a new ``cc-pyscript`` project template!
 
-**Now it's time to explore some of the important features of this template!**
+**Now it's time to explore some of the important features of this template!** See `this project's full tutorial`_ for more detail!
+
+
+5. Adding additional Python scripts to your rendered template (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your ``cc-pyscript`` project is complex enough to require multiple scripts, you can easily add new scripts to the rendered template such that each new script benefits from all of the same packaging benefits as the initial default script rendered by the template. To accomplish this, simply:
+
+1. Add new ``.py`` scripts to the ``src/{{ package_name }}/`` module directory,
+2. Add new command-line entry-points to the project's ``setup.py`` file corresponding to each newly added ``.py`` script.
+
+Taking both of these steps will ensure that each new script is packaged as part of the overarching Python ``{{ package_name }}`` module and will have its own dedicated command-line entry-point. As an example, a new script should be added to the ``src/`` directory structure as such::
+
+   {{ repo_name }}
+    │
+    ├─ src/
+    │ └─ {{ package_name }}/
+    │   │
+    │   ├─ __init__.py
+    │   ├─ {{ script_name }}.py
+    │   └─ new_script.py           <- Newly added script
+    │
+    ...
+ 
+
+And, a new entry point should be added to ``setup.py`` as shown below::
+
+    ...
+    entry_point={
+        "console_scripts": [
+            "{{ command_line_interface_bin_name }} = "
+            "{{ package_name }}.{{ script_name }}:main",
+            # newly added script's CLI entry point
+            "new-bin-name = {{ package_name }}.new_script.py:main",
+        ]
+    },
+    ...
 
 
 .. _other resources:
