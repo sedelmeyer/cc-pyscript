@@ -25,11 +25,11 @@ This Cookiecutter_ template allows for the creation of a fully tested Python scr
 
 * Scripts can be executed as standalone ``.py`` script files OR directly from the command-line entry-point as part of an installable Python application.
 
-* Finished scripts can be made as portable as you like, but can also benefit from added assurances of full unit-testing and test-matrix coverage using Tox_ and continuous integration services such as `GitHub Actions`_ (optional) or `Azure Pipelines`_ (optional, but not yet implemented).
+* Finished scripts can be made as portable as you like, but can also benefit from the added assurances of full unit-testing and test-matrix coverage using Tox_ and continuous integration services such as `GitHub Actions`_ (optional).
 
 * If your project grows in complexity such that it needs to be reconfigured into a fully-featured Python library, minimal work is needed because the majority of the Python scaffolding needed to make that conversion is already implemented as part of the project.
   
-* Conventions and best practices implemented using this template are similar to those used by the similar ``cc-pydata`` and ``cc-pyapp`` Cookiecutter templates, and their use when bootstrapping a new project creates a sense of consistency, making it easier for yourself and others to interpret and extend your code for any new project.
+* Conventions and best practices implemented using this template create a sense of consistency, making it easier for yourself and others to interpret and extend your code for any new project.
 
 
 ``cc-pyscript`` directory structure
@@ -49,7 +49,7 @@ Below is a high level overview of the resulting directory structure when you gen
      │   └─ {{ script_name }}.py    <- The initial script saved to
      │                                 this project
      │
-     ├─ tests/             <- Unit tests for Python your script(s)
+     ├─ tests/             <- Unit tests for your script(s)
      │ └─ test_{{ script_name }}.py <- Default tests for script
      │
      ├─ .github/           <- GitHub actions CI workflows (optional)
@@ -65,7 +65,6 @@ Below is a high level overview of the resulting directory structure when you gen
      ├─ .gitignore         <- Specified files to ignore from Git
      ├─ CHANGLOG.rst       <- Documents version-by-version changes
      ├─ LICENSE            <- Project license (included if open source)
-     ├─ logging.json       <- Default logging configuration dictionary
      ├─ Pipfile            <- Requirements file for reproducing your
      │                        project environment using the Pipenv
      │                        package manager
@@ -90,7 +89,7 @@ Of primary importance to me while designing the ``cc-pyscript`` template was the
 
 2. Run those scripts as a suite of command-line applications, directly from CLI entry-points if so desired.
 
-Also, of importance was to have the code packaged within standardized Python application, easily extensible should the project grow in size and complexity.
+Also, of importance was to have the code packaged within a standardized Python application, easily extensible should the project grow in size and complexity.
 
 While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version of this project.
 
@@ -126,7 +125,7 @@ The default ``cc-pyscript`` template makes use of the following tools and featur
 * Packaging of your Python scripts as part of an overarching module, allowing you to fully test your code and alternatively execute your scripts as an installable command-line entry-point;
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
-To see functionality anticipated for future versions of the ``cc-pyscript`` template, please see `the Changelog notes regarding future-releases <https://sedelmeyer.github.io/cc-pyscript/changelog.html#future-releases>`_.
+To see functionality anticipated for future versions of the ``cc-pyscript`` template, please see `the Changelog notes regarding future-releases <https://github.com/sedelmeyer/cc-pyscript/blob/feat-docs/CHANGELOG.rst>`_.
 
 .. _requirements:
 
@@ -406,7 +405,7 @@ Articles related to Python packaging
 * `Distributing packages using setuptools <https://packaging.python.org/guides/distributing-packages-using-setuptools/>`_
 
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter 
 .. _`audreyfeldroy/cookiecutter-pypackage`: https://github.com/audreyfeldroy/cookiecutter-pypackage
 .. _`ionelmc/cookiecutter-pylibrary`: https://github.com/ionelmc/cookiecutter-pylibrary
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/
