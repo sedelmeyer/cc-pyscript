@@ -140,7 +140,7 @@ This template and resulting ``cc-pyscript`` project has been tested to work with
 
 * ``python >= 3.6``
 * ``cookiecutter >= 1.7``
-* ``pipenv >= 2018-11-26``
+* ``pipenv >= 2020.8.13``
 
 For an in-depth review of testing perfomed on this project, please see `the write-up I have provided on "Project testing and the test API" <https://sedelmeyer.github.io/cc-pyscript/about.html#project-testing-and-test-api>`_.
 
