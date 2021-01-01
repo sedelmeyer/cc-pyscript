@@ -7,8 +7,9 @@ v0.2.0 (Future Release)
 -----------------------
 
 * Add Azure Pipelines continuous integration option
+* Add basic logger functionality to script template
 
-v0.1.0 (2020-12-31)
+v0.1.0 (2021-01-01)
 -------------------
 
 * Initial ``cc-pyscript`` template with GitHub Actions CI and Tox testing
