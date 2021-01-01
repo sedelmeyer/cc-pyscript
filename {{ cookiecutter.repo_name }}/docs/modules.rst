@@ -6,6 +6,6 @@ API Reference
   :depth: 2
   :backlinks: top
 
-.. automodule:: {{cookiecutter.script_name}}
+.. automodule:: {{ cookiecutter.package_name }}.{{cookiecutter.script_name}}
    :members:
 
