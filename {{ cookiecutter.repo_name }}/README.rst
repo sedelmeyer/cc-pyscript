@@ -22,7 +22,6 @@ Summary
 
 The ``{{ cookiecutter.script_name }}.py`` script itself can be found in the ``src/{{ cookiecutter.package_name }}/`` sub-directory.
 
-Please note that this script can also be run from this project's ``{{ cookiecutter.package_name }}`` package
 
 Command line usage
 ------------------
@@ -105,26 +104,30 @@ If you'd like clone and build off of this project, below are some important note
     * Below are placeholder sections for explaining important characteristics of this project's configuration.
     * This section should contain all details required for someone else to easily begin adding additional development and analyses to this project.
 
+
 Project repository directory structure, design, and usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The repository structure, packaging, and workflows for this project are largely based on the conventions used in the ``cc-pyscript`` Cookiecutter template `available here <https://github.com/sedelmeyer/cc-pyscript>`_.
+The repository structure, packaging, and workflows for this project are largely based on the conventions used in the ``cc-pyscript`` Cookiecutter template `available here <https://github.com/sedelmeyer/cc-pyscript>`_. Please read the documentation for that project for a complete overview of the tools and conventions used in the {{ cookiecutter.repo_name }} project.
+
 
 Python package configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This package is configured via the ``setup.py`` and ``setup.cfg`` files found in this repository. The source code for this package is located in the ``src/{{ cookiecutter.package_name }}/`` directory. For general information on the benefits to this approach for packaging a Python library, please `see this article <https://blog.ionelmc.ro/2014/05/25/python-packaging/>`_.
 
+
 Testing
 ^^^^^^^
 
 This project is configured for automated testing using ``tox``{% if cookiecutter.gh_actions == 'yes' %} and continuous integration services via GitHub Actions{% endif %}. Additionally, the ``pytest`` test-runner is used for running the associated test suite located in the ``tests/`` directory.
 
+* If you are new to ``pytest``, please see `the official pytest documentation <https://docs.pytest.org/en/stable/index.html>`_. 
 * If you are new to ``tox``, please see `the official Tox documentation <https://tox.readthedocs.io/en/latest/>`_.
 {% if cookiecutter.gh_actions == 'yes' %}
 * If you are new to GitHub Actions, additional information `can be found here <https://github.com/features/actions>`_.
 {%- endif %}
-* If you are new to ``pytest``, please see `the official pytest documentation <https://docs.pytest.org/en/stable/index.html>`_. 
+
 
 Project versioning
 ^^^^^^^^^^^^^^^^^^
@@ -133,12 +136,26 @@ This project is configured to use ``setuptools_scm`` to manage and track the pro
 
 * If you are new to ``setuptools_scm``, please see `the official documentation <https://pypi.org/project/setuptools-scm/>`_.
 
+
 Documentation using Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo::
 
-   * If this project is complex enough to require the use of full-fledged Sphinx documentation, add details here.
+   * If this project is not complex enough to require the use of full-fledged Sphinx documentation, feel free to:
+
+     * Delete this section of ``README.rst``
+     * Delete the ``docs/`` directory
+     * Delete the ``docs`` test environment from ``tox.ini``{% if cookiecutter.gh_actions == 'yes' %}and ``.github/workflows/ci-test-matrix.yml``{% endif %}.
+
+
+This project is configured to use reStructuredText_ and Sphinx_ to generate and maintain project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to this project's Pipfile. Therefore, when you run ``pipenv install --dev`` for the first time for your new project ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
+
+* **For an overview of usage, or for more info on the benefits of Sphinx and reStructuredText**, please see `this section of this brief overview of using Sphinx to document a project <https://sedelmeyer.github.io/cc-pydata/tutorial.html#documenting-your-project-using-sphinx-and-github-pages
+>`_
+* **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
+* **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+
 
 .. _issues:
 
