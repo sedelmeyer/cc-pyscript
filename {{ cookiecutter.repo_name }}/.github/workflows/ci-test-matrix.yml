@@ -32,7 +32,7 @@ jobs:
         pip install tox
     - name: Run tox test-runner
       run: |
-        tox -e tests
+        tox -e py
     - name: Run tox linter
       if: {{ "${{ matrix.python-version == 3.7 }}" }}
       run: |
