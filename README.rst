@@ -11,7 +11,7 @@ Cookiecutter PyScript (``cc-pyscript``) is a Cookiecutter_ template for generati
 
 
 * **GitHub repo:** https://github.com/sedelmeyer/cc-pyscript
-
+* **Full project documentation:** https://sedelmeyer.github.io/cc-pyscript
 
 .. contents:: Contents
   :local:
